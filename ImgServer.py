@@ -46,6 +46,7 @@ class CommandHandler(BaseHTTPRequestHandler):
 		elif cmd == "/?cmd=9" :
 			mode = VisualFilters.RESALTAR_BLANCO
 		elif cmd == "/?cmd=10" :
+			VisualFilters.inicializarMOG()
 			mode = VisualFilters.DETECTAR_MOVIMIENTO
 		elif cmd == "/?cmd=11" :
 			mode = VisualFilters.RESALTAR_COLORES_FUEGO

@@ -19,7 +19,7 @@ PARAMETRO_AZUL      = 1
 PARAMETRO_VERDE     = 3
 PARAMETRO_BLANCO    = 4
 
-mog = cv2.BackgroundSubtractorMOG(history=3, nmixtures=5, backgroundRatio=0.9)
+mog = cv2.BackgroundSubtractorMOG(history=10, nmixtures=6, backgroundRatio=0.9, noiseSigma=0.1)
 
 #funcion que intensifica los colores en un rango(min y max)
 #rango minino de los tres canales HSV: hMin,sMin,vMin
@@ -109,20 +109,35 @@ def detectorHaar(img,haar):
     return img
 
 
-def detectarMovimiento(img) :
+def inicializarMOG():
+    global mog
+    mog = cv2.BackgroundSubtractorMOG(history=500, nmixtures=6, backgroundRatio=0.9, noiseSigma=0.1)
 
-    alto, ancho = img.shape[:2]
+
+def detectarMovimiento(img) :
+    #
     fgmask = mog.apply(img)
     mask_rbg = cv2.cvtColor(fgmask,cv2.COLOR_GRAY2BGR)
-    img2=np.zeros([alto,ancho,3],dtype=np.uint8)
-    #element = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(7,7))
-    #cv2.dilate(mask_rbg,element)
-    img2[:,:,:]=255,0,255 # verde intenso en BGR
-    img2=cv2.cvtColor(img2,cv2.COLOR_BGR2HSV)
-    image = cv2.bitwise_and(img, img2, mask = mask_rbg)
+    #image = cv2.bitwise_and(img,mask_rbg)
     #image = img & mask_rbg
 
-    return image
+    thresh = cv2.threshold(fgmask, 25, 255, cv2.THRESH_BINARY)[1]
+
+    # dilate the thresholded image to fill in holes, then find contours
+	# on thresholded image
+    thresh = cv2.dilate(thresh, None, iterations=2)
+    (cnts, _) = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
+		cv2.CHAIN_APPROX_SIMPLE)
+	# loop over the contours
+    for c in cnts:
+		# compute the bounding box for the contour, draw it on the frame,
+		# and update the text
+        if cv2.contourArea(c) < 100:
+            continue
+        (x, y, w, h) = cv2.boundingRect(c)
+        cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
+    return img
 
 def marcarRectas(img) :
 
