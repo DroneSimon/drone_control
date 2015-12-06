@@ -2,7 +2,8 @@
 
 var DEFAULT_STABILITY_THROTTLE = 40;
 
-var url_cv = "http://192.168.17.102:8081";
+document.querySelector("img.video_c").src = "http://"+document.location.hostname+":8080/stream.mjpg";
+var url_cv = "http://"+document.location.hostname+":8081";
 
 var info_throttle = document.getElementById( "info_throttle" );
 var info_yaw = document.getElementById( "info_yaw" );
