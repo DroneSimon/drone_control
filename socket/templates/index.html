@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>DronSimon</title>
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="{{ static_url('bower_components/bootstrap/dist/css/bootstrap.min.css') }}" type="text/css">
+  <link rel="stylesheet" href="{{ static_url('bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css') }}" type="text/css">
+
+  <link rel="stylesheet" href="{{ static_url('bower_components/flat-ui/dist/css/flat-ui.css') }}" type="text/css">
+  <link rel="stylesheet" href="{{ static_url('styles.css') }}" type="text/css">
+  <link rel="stylesheet" href="{{ static_url('css/styles.css') }}" type="text/css">
+  <script src="{{ static_url('bower_components/jquery/dist/jquery.min.js') }}" type="text/javascript"></script>
+  <script src="{{ static_url('bower_components/bootstrap-switch/dist/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
+
+
+</head>
+<body>
+
+    <!--
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Logo</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="sass.html">Sass</a></li>
+          <li><a href="badges.html">Components</a></li>
+          <li><a href="collapsible.html">Javascript</a></li>
+          <li><a href="mobile.html">Mobile</a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <li><a href="sass.html">Sass</a></li>
+          <li><a href="badges.html">Components</a></li>
+          <li><a href="collapsible.html">Javascript</a></li>
+          <li><a href="mobile.html">Mobile</a></li>
+        </ul>
+      </div>
+    </nav>
+      -->
+
+  <div id="main">
+    <img class="video_c" src="http://192.168.17.102:8080/stream.mjpg" ></img>
+    <div id="head_control" class="">
+      <div id="slider_aux_1"></div>
+
+      <!-- Square switch -->
+      <!--
+      <div id='switch_on_off' class="bootstrap-switch-square">
+        <input type="checkbox" checked data-toggle="switch" name="square-switch" id="switch-02" />
+      </div>
+      -->
+
+      <div id="slider_on_off"></div>
+      <!--<div id="slider_aux_2"></div>-->
+    </div>
+    <button id="btn_cv_control" class="btn btn-inverse">CV CONTROL</button>
+    <div id="cv_control" style="display: none;">
+      <label class="radio radios_cv" for="radio0">
+        <input type="radio" name="option_radios_cv" value="0" id="radio0" data-toggle="radio" checked="checked" class="custom-radio">
+          <span class="icons">
+            <span class="icon-unchecked"></span>
+            <span class="icon-checked"></span>
+          </span>
+          NORMAL
+      </label>
+      <label class="radio radios_cv" for="radio1">
+        <input type="radio" name="option_radios_cv" value="1" id="radio1" data-toggle="radio" class="custom-radio">
+          <span class="icons">
+            <span class="icon-unchecked"></span>
+            <span class="icon-checked"></span>
+          </span>
+          GENTE
+      </label>
+      <label class="radio radios_cv" for="radio2">
+        <input type="radio" name="option_radios_cv" value="2" id="radio2" data-toggle="radio" class="custom-radio">
+        <span class="icons">
+          <span class="icon-unchecked"></span>
+          <span class="icon-checked"></span>
+        </span>
+        HUMO
+      </label>
+      <label class="radio radios_cv" for="radio3">
+        <input type="radio" name="option_radios_cv" value="3" id="radio3" data-toggle="radio" class="custom-radio">
+        <span class="icons">
+          <span class="icon-unchecked"></span>
+          <span class="icon-checked"></span>
+        </span>
+        FUEGO
+      </label>
+      <label class="radio radios_cv" for="radio4">
+        <input type="radio" name="option_radios_cv" value="4" id="radio4" data-toggle="radio" class="custom-radio">
+        <span class="icons">
+          <span class="icon-unchecked"></span>
+          <span class="icon-checked"></span>
+        </span>
+        BORDES
+      </label>
+      <label class="radio radios_cv" for="radio5">
+        <input type="radio" name="option_radios_cv" value="5" id="radio5" data-toggle="radio" class="custom-radio">
+        <span class="icons">
+          <span class="icon-unchecked"></span>
+          <span class="icon-checked"></span>
+        </span>
+        LINEAS RECTAS
+      </label>
+      <!--<label class="radio radios_cv" for="radio6">
+        <input type="radio" name="option_radios_cv" value="6" id="radio6" data-toggle="radio" class="custom-radio">
+        <span class="icons">
+          <span class="icon-unchecked"></span>
+          <span class="icon-checked"></span>
+        </span>
+        COLORES
+      </label>
+      -->
+      <label class="radio radios_cv" for="radio6">
+        <input type="radio" name="option_radios_cv" value="6" id="radio6" data-toggle="radio" class="custom-radio">
+        <span class="icons">
+          <span class="icon-unchecked"></span>
+          <span class="icon-checked"></span>
+        </span>
+        ROJO
+      </label>
+
+      <label class="radio radios_cv" for="radio7">
+        <input type="radio" name="option_radios_cv" value="7" id="radio7" data-toggle="radio" class="custom-radio">
+        <span class="icons">
+          <span class="icon-unchecked"></span>
+          <span class="icon-checked"></span>
+        </span>
+        VERDE
+      </label>
+      <label class="radio radios_cv" for="radio8">
+        <input type="radio" name="option_radios_cv" value="8" id="radio8" data-toggle="radio" class="custom-radio">
+        <span class="icons">
+          <span class="icon-unchecked"></span>
+          <span class="icon-checked"></span>
+        </span>
+        AZUL
+      </label>
+      <label class="radio radios_cv" for="radio9">
+        <input type="radio" name="option_radios_cv" value="9" id="radio9" data-toggle="radio" class="custom-radio">
+        <span class="icons">
+          <span class="icon-unchecked"></span>
+          <span class="icon-checked"></span>
+        </span>
+        BLANCO
+      </label>
+      <label class="radio radios_cv" for="radio10">
+        <input type="radio" name="option_radios_cv" value="10" id="radio10" data-toggle="radio" class="custom-radio">
+        <span class="icons">
+          <span class="icon-unchecked"></span>
+          <span class="icon-checked"></span>
+        </span>
+        MOVIMIENTOS
+      </label>
+      <label class="radio radios_cv" for="radio11">
+        <input type="radio" name="option_radios_cv" value="11" id="radio11" data-toggle="radio" class="custom-radio">
+        <span class="icons">
+          <span class="icon-unchecked"></span>
+          <span class="icon-checked"></span>
+        </span>
+        XX
+      </label>
+    </div>
+
+
+    <div id="controller_joystick" class="active">
+
+      <div id="slider_throttle" ></div>
+
+      <div id='joystick_left' class="joydiv-joystick_left">
+          <div id="bg_joystick_left"></div>
+          <div class="joydiv-up"></div>
+          <div class="joydiv-left"></div>
+          <div class="joydiv-right"></div>
+          <div class="joydiv-down"></div>
+          <div class="joydiv-trackpad">
+              <div class="joydiv-tracker"></div>
+          </div>
+          <!--<label id='lbl_yaw' for="yaw">YAW</label>-->
+      </div>
+
+      <div id='joystick_right' class="joydiv-joystick_right">
+          <div id="bg_joystick_right"></div>
+          <div class="joydiv-up"></div>
+          <div class="joydiv-left"></div>
+          <div class="joydiv-right"></div>
+          <div class="joydiv-down"></div>
+          <div class="joydiv-trackpad">
+              <div class="joydiv-tracker"></div>
+          </div>
+          <!--
+          <label id='lbl_pitch' for="pitch">PITCH</label>
+          <label id='lbl_roll' for="roll">ROLL</label>
+          -->
+      </div>
+
+      <input type="text" id="direction" readonly style="display:none;">
+
+    </div>
+
+  </div>
+  <!--<script src="{{ static_url('cliente.js') }}" type="text/javascript"></script>-->
+  <script type="text/javascript" src="{{ static_url('bower_components/flat-ui/dist/js/flat-ui.js') }}"></script>
+  <script type="text/javascript" charset="UTF-8" src="{{ static_url('joydiv.js') }}"></script>
+  <script type="text/javascript" charset="UTF-8" src="{{ static_url('js/scripts.js') }}"></script>
+</body>
+</html>
+
