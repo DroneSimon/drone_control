@@ -196,6 +196,17 @@ a img {
   right: 0px;
   top: 0px;
 }
+#main #pn_info {
+  padding: 0.5em;
+  background: #d13f19;
+  position: absolute;
+  top: 0px;
+  right: 11em;
+}
+#main #pn_info span {
+  display: inline-block;
+  margin: 0px 12px;
+}
 #main #cv_control {
   position: absolute;
   top: 0em;
@@ -319,7 +330,6 @@ a img {
   margin-left: 0%;
   margin-right: 3%;
   position: absolute;
-  background: #d13f19;
   bottom: 25%;
   left: 15%;
   width: 1.5em;
@@ -493,7 +503,6 @@ a img {
   color: #eb012c;
   width: 1.5em;
   height: 1.5em;
-  background: #ffdc00;
   font-size: 150px;
 }
 #main #controller_joystick #joystick_right:before,

@@ -53,6 +53,15 @@ $cvioleta = rgba(112, 40, 97, 1)
         position: absolute;
         right: 0px;
         top: 0px;
+    #pn_info
+        padding: 0.5em;
+        background: red;
+        position: absolute;
+        top: 0px;
+        right: 11em
+        span
+            display inline-block
+            margin 0px 12px
     #cv_control
         position: absolute;
         top: 0em;
@@ -106,7 +115,6 @@ $cvioleta = rgba(112, 40, 97, 1)
         #joystick_left
             col(5/12 , cycle: 3)
             position absolute
-            background red
             bottom 25%
             left 15%
             width: 1.5em;
@@ -226,7 +234,6 @@ $cvioleta = rgba(112, 40, 97, 1)
             color: $color6
             width: 1.5em;
             height: 1.5em;
-            background yellow
             font-size: 150px;//font-size is used to determine the size of arrows
             +below( 767px )
                 bottom 0px

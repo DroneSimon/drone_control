@@ -4,6 +4,12 @@ var DEFAULT_STABILITY_THROTTLE = 40;
 
 var url_cv = "http://192.168.17.102:8081";
 
+var info_throttle = document.getElementById( "info_throttle" );
+var info_yaw = document.getElementById( "info_yaw" );
+var info_pitch = document.getElementById( "info_pitch" );
+var info_roll = document.getElementById( "info_roll" );
+
+
 function send_post ( url , data ){
   var xhr = new XMLHttpRequest();
   xhr.withCredentials = true;
@@ -339,7 +345,7 @@ if ( $slider_fly_mode.length > 0 && $slider_on_off.length > 0 ) {
         var data = new FormData();
         data.append( "throttle" , throttle_val );
         send_post( "/control/action/throttle" , data );
-        document.querySelector( "#slider_throttle .ui-slider-handle" ).innerText = throttle_val;
+        info_throttle.textContent  = "throttle: "+throttle_val;
     }
   })
 
@@ -349,7 +355,7 @@ if ( $slider_fly_mode.length > 0 && $slider_on_off.length > 0 ) {
       var data = new FormData();
       data.append( "throttle" , DEFAULT_STABILITY_THROTTLE );
       send_post( "/control/action/throttle" , data );
-      document.querySelector( "#slider_throttle .ui-slider-handle" ).innerText = DEFAULT_STABILITY_THROTTLE;
+      info_throttle.textContent  = "throttle: "+DEFAULT_STABILITY_THROTTLE;
     }
   });
 
