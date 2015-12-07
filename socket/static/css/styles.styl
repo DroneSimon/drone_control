@@ -104,19 +104,24 @@ $cvioleta = rgba(112, 40, 97, 1)
         width: 100%;
         #slider_throttle
             col(1/12 , cycle: 3)
-            width 1.6em
-            left 0.8em
-            min-height: 400px
+            width 4em
+            left 0.1em
+            min-height: 480px
+            bottom 1em
+            background: gray;
             .ui-slider-handle
-                width 35px
-                height 35px
-                left -2px
+                width: 70px;
+                height: 70px;
+                left: -13px;
+                display none
                 background $color4
+            .ui-slider-range
+                border-radius: 0 0 30px 30px;
         #joystick_left
             col(5/12 , cycle: 3)
             position absolute
             bottom 25%
-            left 15%
+            left 16%
             width: 1.5em;
             height: 1.5em;
             font-size: 150px;//font-size is used to determine the size of arrows

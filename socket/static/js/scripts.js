@@ -9,12 +9,16 @@ var info_yaw      = document.getElementById( "info_yaw" );
 var info_pitch    = document.getElementById( "info_pitch" );
 var info_roll     = document.getElementById( "info_roll" );
 
+var $slider_fly_mode  = $( "#slider_aux_1" );
+var $slider_accessory_0  = $( "#slider_aux_2" );
+var $slider_on_off = $( "#slider_on_off" );
+var $slider_throttle = $( "#slider_throttle" );
+
 var control_drone_socket = new WebSocket( document.location.origin.replace( "http" , "ws" ) + "/websocket" );
 
 control_drone_socket.onopen = function() {
   control_drone_socket.send( "socket,Inicializado" );
 };
-
 
 
 function send_post ( url , data ){
@@ -249,10 +253,7 @@ $.fn.addSliderSegments = function (amount, orientation) {
   });
 };
 
-var $slider_fly_mode  = $( "#slider_aux_1" );
-var $slider_accessory_0  = $( "#slider_aux_2" );
-var $slider_on_off = $( "#slider_on_off" );
-var $slider_throttle = $( "#slider_throttle" );
+
 
 
 if ( $slider_fly_mode.length > 0 && $slider_on_off.length > 0 ) {
@@ -324,14 +325,18 @@ if ( $slider_fly_mode.length > 0 && $slider_on_off.length > 0 ) {
     orientation: "vertical",
     range: "min",
     slide: function( event , ui ) {
+      this.value = ui.value;
       throttle_val = Math.round( ui.value );
-        this.value = throttle_val;
-        control_drone_socket.send( "throttle,"+throttle_val );
-        info_throttle.textContent  = "throttle: "+throttle_val;
+      /*window.test2 = this.value;
+      window.test = ui.value;
+      */
+      //console.log( throttle_val );
+      control_drone_socket.send( "throttle,"+throttle_val );
+      info_throttle.textContent  = "throttle: "+throttle_val;
     }
   })
 
-  $slider_throttle.mouseup(function(){
+  $slider_throttle.mouseup( function(){
     if ( $slider_throttle.val() >= DEFAULT_STABILITY_THROTTLE ) {
       $slider_throttle.slider( "value" , DEFAULT_STABILITY_THROTTLE  )
       control_drone_socket.send( "throttle,"+DEFAULT_STABILITY_THROTTLE );
@@ -342,7 +347,6 @@ if ( $slider_fly_mode.length > 0 && $slider_on_off.length > 0 ) {
 }
 
 $("input[name='option_radios_cv']").bind( 'change' , function( evt ){
-    console.log( test.target.value  );
     document.getElementById( "cv_control" ).style.display = "none";
     document.getElementById( "btn_cv_control" ).style.display = "block"
     send_get( url_cv + "/?cmd=" + evt.target.value );
