@@ -1,5 +1,5 @@
 
-var DEFAULT_STABILITY_THROTTLE = 40;
+var DEFAULT_STABILITY_THROTTLE = 60;
 
 document.querySelector( "img.video_c" ).src = "http://"+document.location.hostname+":8080/stream.mjpg";
 var url_cv  =  "http://"+document.location.hostname+":8081";
@@ -91,7 +91,6 @@ element.addEventListener( 'joydiv-changed' , function( e ) {
       */
       case 'none' :
         control_drone_socket.send( "yaw,50" );
-        console.log( "______  none ----------" );
       break;
     }
 });
@@ -150,7 +149,6 @@ element2.addEventListener( 'joydiv-changed' , function( e ) {
       case 'none' :
         control_drone_socket.send( "roll,50" );
         control_drone_socket.send( "pitch,50" );
-        console.log( "______  none ----------" );
       break;
     }
 });
@@ -344,10 +342,7 @@ if ( $slider_fly_mode.length > 0 && $slider_on_off.length > 0 ) {
 }
 
 $("input[name='option_radios_cv']").bind( 'change' , function( evt ){
-    window.test = evt;
     console.log( test.target.value  );
-    var data = new FormData();
-    data.append( "CMD" ,  evt.target.value );
     document.getElementById( "cv_control" ).style.display = "none";
     document.getElementById( "btn_cv_control" ).style.display = "block"
     send_get( url_cv + "/?cmd=" + evt.target.value );
