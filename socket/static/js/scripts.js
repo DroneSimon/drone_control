@@ -1,5 +1,5 @@
 
-var DEFAULT_STABILITY_THROTTLE = 60;
+var DEFAULT_STABILITY_THROTTLE = 64;
 
 document.querySelector( "img.video_c" ).src = "http://"+document.location.hostname+":8080/stream.mjpg";
 var url_cv  =  "http://"+document.location.hostname+":8081";
