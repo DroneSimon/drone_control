@@ -1,19 +1,10 @@
 
 import os , sys , serial
-"""
-#serial_com = serial.Serial(
-    port = '/dev/ttyUSB0',
-    baudrate = 9600 ,
-    timeout = 1
-)
 
-#serial_com.write( "s\n" )
-#serial_com.write( "s\n" )
-"""
-DIR = os.path.dirname(__file__)
+DIR = os.path.dirname( __file__ )
 
 sys.path.append(  os.path.join( DIR , '../control' )  )
-
+import json
 import logging
 import tornado.escape
 import tornado.ioloop
@@ -36,14 +27,56 @@ print "server in  port: 7777"
 
 control_remoto = 2
 
-class EchoWebSocket( tornado.websocket.WebSocketHandler ):
+class control_drone_socket( tornado.websocket.WebSocketHandler ):
     def open( self ):
         print( "WebSocket opened" )
     def on_message( self, message ):
-        print message
+        #print message
+        message = message.split(',')
+
+        if message[0] == 'yaw' :
+            #print "yaw: ", message[1]
+            control_remoto.setTimon( int( message[1] ) )
+        elif message[0] == 'pitch' :
+            #print "pitch: ", message[1]
+            control_remoto.setElevador( int( message[1] ) )
+        elif message[0] == 'roll' :
+            #print "roll: ", message[1]
+            control_remoto.setAleron( int( message[1] ) )
+        elif message[0] == 'throttle' :
+            #print "throttle: ", message[1]
+            control_remoto.setAcelerador( int( message[1] ) )
+        elif message[0] == 'socket' :
+            print "socket: ", message[1]
+        elif message[0] == 'flight_mode' :
+            #print "flight_mode: ", message[1]
+            control_remoto.setAux1( int( message[1] ) )
+        elif message[0] == 'on_off' :
+            print "on_off: ", message[1]
+
+
+        """
+        {
+            'yaw'   : pprint.pprint( x ),#lambda x: int(x) * 5,
+            'pitch' : lambda x: int(x) + 7,
+            'roll'  : lambda x: int(x) - 2,
+            'throttle' : lambda x: int(x) - 2,
+            'socket' : lambda x: x,
+            'flight_mode' : lambda x: x,
+            'on_off' : lambda x: x
+        }[ message[0] ]( message[1] )
+        """
+        #pprint.pprint( result )
+        #parsed = json.loads( message )
+        #print json.dumps( parsed, indent=2, sort_keys=True )
         #self.write_message( u"You said: " + message )
+
     def on_close(self):
-        print( "WebSocket closed" )
+        print( "\----------------\nWebSocket closed\n\----------------\n" )
+        control_remoto.setTimon( 50 )
+        control_remoto.setElevador( 50 )
+        control_remoto.setAleron( 50 )
+        control_remoto.setAcelerador( 60 )
 
 
 class MessageBuffer(object):
@@ -206,7 +239,7 @@ def main():
             (r"/control/action/interrumpir" , control_action_interrumpir ),
             (r"/control/action/reiniciar" , control_action_reiniciar ),
             (r"/control/action/resetear_valores" , control_action_resetear_valores ),
-            (r"/websocket" , EchoWebSocket )
+            (r"/websocket" , control_drone_socket )
 
 
 

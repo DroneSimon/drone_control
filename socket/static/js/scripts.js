@@ -1,14 +1,20 @@
 
-
 var DEFAULT_STABILITY_THROTTLE = 40;
 
-document.querySelector("img.video_c").src = "http://"+document.location.hostname+":8080/stream.mjpg";
-var url_cv = "http://"+document.location.hostname+":8081";
+document.querySelector( "img.video_c" ).src = "http://"+document.location.hostname+":8080/stream.mjpg";
+var url_cv  =  "http://"+document.location.hostname+":8081";
 
 var info_throttle = document.getElementById( "info_throttle" );
-var info_yaw = document.getElementById( "info_yaw" );
-var info_pitch = document.getElementById( "info_pitch" );
-var info_roll = document.getElementById( "info_roll" );
+var info_yaw      = document.getElementById( "info_yaw" );
+var info_pitch    = document.getElementById( "info_pitch" );
+var info_roll     = document.getElementById( "info_roll" );
+
+var control_drone_socket = new WebSocket( document.location.origin.replace( "http" , "ws" ) + "/websocket" );
+
+control_drone_socket.onopen = function() {
+  control_drone_socket.send( "socket,Inicializado" );
+};
+
 
 
 function send_post ( url , data ){
@@ -53,9 +59,7 @@ element.addEventListener( 'joydiv-changed' , function( e ) {
       case 'right' :
         right_val =  ( 50 + ( 33.3 * aux.magnitude ) ).toFixed( 0 ) ;
         //console.log( 'right' , ( right_val <= 100 ) ? right_val : 100 );
-        var data = new FormData();
-        data.append( "yaw" , ( right_val <= 100 ) ? right_val : 100 );
-        send_post( "/control/action/yaw" , data );
+        control_drone_socket.send( "yaw,"+( ( right_val <= 100 ) ? right_val : 100 ) );
       break;
       /*
       case 'down' :
@@ -65,9 +69,7 @@ element.addEventListener( 'joydiv-changed' , function( e ) {
       case 'left' :
         left_val = ( 50 - ( 33.3 * aux.magnitude ) ).toFixed( 0 ) ;
         //console.log( 'left' , ( left_val >= 0 ) ? left_val : 0 );
-        var data = new FormData();
-        data.append( "yaw" , ( left_val >= 0 ) ? left_val : 0 );
-        send_post( "/control/action/yaw" , data );
+        control_drone_socket.send( "yaw,"+( ( left_val >= 0 ) ? left_val : 0 ) );
       break;
       /*
       case 'up-right' :
@@ -88,9 +90,7 @@ element.addEventListener( 'joydiv-changed' , function( e ) {
       break;
       */
       case 'none' :
-        var data = new FormData();
-        data.append( "yaw" , 50 );
-        send_post( "/control/action/yaw" , data );
+        control_drone_socket.send( "yaw,50" );
         console.log( "______  none ----------" );
       break;
     }
@@ -110,30 +110,22 @@ element2.addEventListener( 'joydiv-changed' , function( e ) {
       case 'up' :
         up_val =  ( 50 + ( 32 * aux.magnitude ) ).toFixed( 0 ) ;
         //console.log( 'up' , ( up_val <= 100 ) ? up_val : 100 );
-        var data = new FormData();
-        data.append( "pitch" , ( up_val <= 100 ) ? up_val : 100 );
-        send_post( "/control/action/pitch" , data )
+        control_drone_socket.send( "pitch,"+( ( up_val <= 100 ) ? up_val : 100 ) );
       break;
       case 'right' :
         right_val =  ( 50 + ( 32 * aux.magnitude ) ).toFixed( 0 ) ;
         //console.log( 'right' , ( right_val <= 100 ) ? right_val : 100 );
-        var data = new FormData();
-        data.append( "roll" , ( right_val <= 100 ) ? right_val : 100  );
-        send_post( "/control/action/roll" , data );
+        control_drone_socket.send( "roll,"+ ( ( right_val <= 100 ) ? right_val : 100 ) );
       break;
       case 'down' :
         down_val = ( 50 - ( 33.3 * aux.magnitude ) ).toFixed( 0 ) ;
         //console.log( 'down' , ( down_val >= 0 ) ? down_val : 0 );
-        var data = new FormData();
-        data.append( "pitch" , ( down_val >= 0 ) ? down_val : 0 );
-        send_post( "/control/action/pitch" , data );
+        control_drone_socket.send( "pitch,"+( ( down_val >= 0 ) ? down_val : 0 ) );
       break;
       case 'left' :
         left_val = ( 50 - ( 33.3 * aux.magnitude ) ).toFixed( 0 ) ;
         //console.log( 'left' , ( left_val >= 0 ) ? left_val : 0 );
-        var data = new FormData();
-        data.append( "roll" , ( left_val >= 0 ) ? left_val : 0 );
-        send_post( "/control/action/roll" , data );
+        control_drone_socket.send( "roll,"+( ( left_val >= 0 ) ? left_val : 0 ) );
       break;
 
       /*
@@ -156,13 +148,8 @@ element2.addEventListener( 'joydiv-changed' , function( e ) {
       */
 
       case 'none' :
-        var data = new FormData();
-        data.append( "roll" , 50 );
-        data.append( "pitch" , 50 );
-        send_post( "/control/action/roll" , data );
-        send_post( "/control/action/pitch" , data );
-        send_post( "/control/action/roll" , data );
-        send_post( "/control/action/pitch" , data );
+        control_drone_socket.send( "roll,50" );
+        control_drone_socket.send( "pitch,50" );
         console.log( "______  none ----------" );
       break;
     }
@@ -207,7 +194,7 @@ element2.addEventListener( 'joydiv-changed' , function( e ) {
           this.value = throttle_val;
           var data = new FormData();
           data.append( "throttle" , throttle_val );
-          send_post( "/control/action/throttle" , data );
+          control_drone_socket.send( "/control/action/throttle" );
           console.log( throttle_val );
       },
       thumbColor: '#cc006699', // ARGB is supported, Alpha, Red, Green and Blue
@@ -279,16 +266,15 @@ if ( $slider_fly_mode.length > 0 && $slider_on_off.length > 0 ) {
     range: "min",
     slide: function( event , ui ) {
 
-      var data = new FormData();
-      data.append( "type" , "command" );
+      var data = 0;
       if ( ui.value == 1 )
-          data.append( "value" , 0 );
+          data = 0;
       else if ( ui.value == 2 )
-          data.append( "value" , 50 );
+          data = 50;
       else if ( ui.value == 3 )
-          data.append( "value" , 100 );
+          data = 100;
 
-      send_post( "/control/action/fly_mode" , data );
+      control_drone_socket.send( "flight_mode,"+data );
     }
   });//.addSliderSegments( $slider.slider("option").max );
 
@@ -299,13 +285,12 @@ if ( $slider_fly_mode.length > 0 && $slider_on_off.length > 0 ) {
     orientation: "horizontal",
     range: "min",
     slide: function( event , ui ) {
-      var data = new FormData();
-      data.append( "type" , "command" );
+      var data = 0;
       if ( ui.value == 2 )
-          data.append( "value" , 100 );
+          data = 100 ;
       else
-          data.append( "value" , 0 );
-      send_post( "/control/action/on_off" , data );
+          data =  0 ;
+      //control_drone_socket.send( "value,"+data );
     }
   });
 
@@ -329,7 +314,7 @@ if ( $slider_fly_mode.length > 0 && $slider_on_off.length > 0 ) {
         else if ( ui.value == 3 )
             data.append( "value" , 100 );
 
-        send_post( "/control/action/accessory_0" , data );
+        control_drone_socket.send( "/control/action/accessory_0" );
       }
     });
     */
@@ -343,9 +328,7 @@ if ( $slider_fly_mode.length > 0 && $slider_on_off.length > 0 ) {
     slide: function( event , ui ) {
       throttle_val = Math.round( ui.value );
         this.value = throttle_val;
-        var data = new FormData();
-        data.append( "throttle" , throttle_val );
-        send_post( "/control/action/throttle" , data );
+        control_drone_socket.send( "throttle,"+throttle_val );
         info_throttle.textContent  = "throttle: "+throttle_val;
     }
   })
@@ -353,9 +336,7 @@ if ( $slider_fly_mode.length > 0 && $slider_on_off.length > 0 ) {
   $slider_throttle.mouseup(function(){
     if ( $slider_throttle.val() >= DEFAULT_STABILITY_THROTTLE ) {
       $slider_throttle.slider( "value" , DEFAULT_STABILITY_THROTTLE  )
-      var data = new FormData();
-      data.append( "throttle" , DEFAULT_STABILITY_THROTTLE );
-      send_post( "/control/action/throttle" , data );
+      control_drone_socket.send( "throttle,"+DEFAULT_STABILITY_THROTTLE );
       info_throttle.textContent  = "throttle: "+DEFAULT_STABILITY_THROTTLE;
     }
   });
@@ -386,7 +367,7 @@ $("input[name='option_radios_cv']").bind( 'change' , function( evt ){
     else if ( state == true )
         data.append( "value" , 100 );
 
-    send_post( "/control/action/accessory_0" , data );
+    control_drone_socket.send( "/control/action/accessory_0" );
 
   });
 */
@@ -398,12 +379,11 @@ document.getElementById( "btn_cv_control" ).addEventListener( 'click' , function
 
 
 
-var ws = new WebSocket( document.location.origin.replace( "http" , "ws" ) + "/websocket" );
-ws.onopen = function() {
-   ws.send("Hello, world");
-};
+
+/*
 ws.onmessage = function (evt) {
    alert(evt.data);
-};
 
+};
+*/
 
