@@ -127,8 +127,8 @@ class CommandThread ( threading.Thread ):
 def main():
 	global capture
 	capture = cv2.VideoCapture(0)
-	capture.set(cv2.cv.CV_CAP_PROP_FRAME_WIDTH, 320);
-	capture.set(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT, 240);
+	capture.set(cv2.cv.CV_CAP_PROP_FRAME_WIDTH, 640);
+	capture.set(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT, 480);
 #	capture.set(cv2.cv.CV_CAP_PROP_SATURATION,0.2);
 	global img
 	try:
