@@ -10,13 +10,11 @@ import cv2
 from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
 import StringIO
 import time
-import AutonomousControl
 
 import VisualFilters
 import Reconocedor_Fuego_Humo
 from PIL import Image
 
-AUTONOMOUS=500
 capture=None
 mode = 0
 
@@ -52,8 +50,6 @@ class CommandHandler(BaseHTTPRequestHandler):
 			mode = VisualFilters.DETECTAR_MOVIMIENTO
 		elif cmd == "/?cmd=11" :
 			mode = VisualFilters.RESALTAR_COLORES_FUEGO
-		elif cmd == "/?cmd=500" :
-			mode = AUTONOMOUS
 
 class CamHandler(BaseHTTPRequestHandler):
 	def do_GET(self):
@@ -95,11 +91,6 @@ class CamHandler(BaseHTTPRequestHandler):
 
 					if mode == VisualFilters.RESALTAR_BLANCO:
 						img = VisualFilters.resalteColor(img, VisualFilters.PARAMETRO_BLANCO)
-
-					if mode == AUTONOMOUS:
-						img, fuego, humo = AutonomousControl.anomalyDetect(img)
-						if fuego > 50 or humo > 50 :
-							AutonomousControl.anomalyDetected()
 
 					imgRGB=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
 					jpg = Image.fromarray(imgRGB)
@@ -144,7 +135,7 @@ def main():
 		cmdserver = CommandThread()
 		cmdserver.start()
 
-		server = HTTPServer(('',8080),CamHandler)
+		server = HTTPServer(('',8082),CamHandler)
 		print "streaming server started"
 		server.serve_forever()
 	except KeyboardInterrupt:

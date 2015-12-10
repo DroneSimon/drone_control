@@ -1,5 +1,5 @@
 
-import os , sys , serial
+import os , sys
 
 DIR = os.path.dirname( __file__ )
 
