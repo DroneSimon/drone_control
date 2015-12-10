@@ -1,6 +1,6 @@
 __author__ = 'Diego Garcia'
 
-from drivers.driver import Driver
+from DroneFramework.drivers.driver import Driver
 from sensor import Sensor
 from sensorDataMagnetometro import SensorDataMagnetometro
 

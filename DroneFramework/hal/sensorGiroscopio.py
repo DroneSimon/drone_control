@@ -1,4 +1,4 @@
-from drivers.driver import Driver
+from DroneFramework.drivers.driver import Driver
 from sensor import Sensor
 from sensorDataGiroscopio import SensorDataGiroscopio
 from datetime import *

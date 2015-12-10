@@ -1,7 +1,7 @@
 import abc
 from abc import ABCMeta
 
-from drivers.driver import Driver
+from DroneFramework.drivers.driver import Driver
 
 
 class SensorData(object):

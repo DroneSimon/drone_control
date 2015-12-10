@@ -1,7 +1,7 @@
 __author__ = 'Diego Garcia'
 # modificado I.C.C
 
-from drivers.driver import Driver
+from DroneFramework.drivers.driver import Driver
 from sensor import Sensor
 from sensorDataUltrasonido import SensorDataUltrasonido
 

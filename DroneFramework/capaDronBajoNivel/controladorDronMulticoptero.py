@@ -1,16 +1,18 @@
-_autor_= "I.C.C."
+from DroneFramework.drivers.driverGiroscopio import DriverGiroscopio
+
+_autor_= "Indira Camacho"
 
 import time
-from hal.actuadorOpenPilot import ActuadorOpenPilot
-from hal.sensorGPS import SensorGPS
-from hal.sensorGiroscopio import SensorGiroscopio
-from hal.sensorUltrasonido import SensorUltrasonido
-from hal.sensorMagnetometro import SensorMagnetometro
-from hal.sensorBateria import SensorBateria
+from DroneFramework.hal.actuadorOpenPilot import ActuadorOpenPilot
+from DroneFramework.hal.sensorGPS import SensorGPS
+from DroneFramework.hal.sensorGiroscopio import SensorGiroscopio
+from DroneFramework.hal.sensorUltrasonido import SensorUltrasonido
+from DroneFramework.hal.sensorMagnetometro import SensorMagnetometro
+from DroneFramework.hal.sensorBateria import SensorBateria
 
-from drivers.driverGPS import DriverGPS
-from drivers.driverMagnetometro import DriverMagnetometro
-from drivers.driverUltrasonido import DriverUltrasonido
+from DroneFramework.drivers.driverGPS import DriverGPS
+from DroneFramework.drivers.driverMagnetometro import DriverMagnetometro
+from DroneFramework.drivers.driverUltrasonido import DriverUltrasonido
 
 # falta driver de nivel de bateria y de giroscopio
 
@@ -27,9 +29,9 @@ class ControladorDronMulticoptero(ControladorDronVolador):
         self.sensorBateria= SensorBateria()
 
         self.alcanceUltrasonido=4000
-        self.sensorUltrasonido = SensorUltrasonido(DriverUltrasonido(),alcanceUltrasonido)
+        self.sensorUltrasonido = SensorUltrasonido(DriverUltrasonido(), self.alcanceUltrasonido)
 
-        self.sensorGPS=SensorGPS(DriverGPS())
+        #self.sensorGPS=SensorGPS(DriverGPS())
         # convierto la info del GPS a centimetros porque viene en metros
         self.altitudSuelo=self.sensorGPS.getLastInfo().getData()['altitud']*100
 
@@ -61,7 +63,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
     def apagar(self):
         self.actuadorOP.apagar()
 
-    # giro lateral de la cabeza desde la pocisión donde esta
+    # giro lateral de la cabeza desde la pocision donde esta
     # velocidad es un entero de 1 al 50, no puede ser 0
     # si grados es negativo ira a la izquierda
     def yaw(self, grados, velocidad):
@@ -83,7 +85,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
     def yaw_izquierda(self, grados, velocidad):
         self.yaw(-grados,velocidad)
 
-    # giro lateral de la cabeza a la derecha desde la pocisión donde esta
+    # giro lateral de la cabeza a la derecha desde la pocision donde esta
     def yaw_derecha(self, grados, velocidad):
         self.yaw(grados,velocidad)
 
@@ -105,13 +107,13 @@ class ControladorDronMulticoptero(ControladorDronVolador):
         while (distanciaAlcanzada<distanciaFinal & velocidad>self.velocidadEstable):
              distanciaAlcanzada=self.getDistancaSuelo()
              time.sleep(.300)
-        self.actuadorOP.setThrotle(velocidadEstable)
+        self.actuadorOP.setThrotle(self.velocidadEstable)
 
-    # bajar el dron hasta "distancia" del piso. Estará en centimetros
-    # velocidad tendría que ser menor a la estable si es mayor la dejo en velocidad estable, e.d. no baja
+    # bajar el dron hasta "distancia" del piso. Estara en centimetros
+    # velocidad tendria que ser menor a la estable si es mayor la dejo en velocidad estable, e.d. no baja
     def down(self, distancia, velocidad):
         if (velocidad>self.velocidadEstable):
-            velocidad=velocidadEstable
+            velocidad= self.velocidadEstable
 
         distanciaInicial=self.getDistanciaSuelo()
         distanciaAlcanzada=distanciaInicial
@@ -124,10 +126,10 @@ class ControladorDronMulticoptero(ControladorDronVolador):
         while (distanciaAlcanzada>distanciaFinal & velocidad<self.velocidadEstable):
              distanciaAlcanzada=self.getDistanciaSuelo()
              time.sleep(.300)
-        self.actuadorOP.setThrotle(velocidadEstable)
+        self.actuadorOP.setThrotle(self.velocidadEstable)
 
     # me devuelve la distancia del dron al suelo, si esta fuera del alcance del ultrasonido devuelve
-    # distancia GPS. para ello se deberá setar 1ro distancia altitud suelo
+    # distancia GPS. para ello se debera setear 1ro distancia altitud suelo
     def getDistanciaSuelo(self):
         distanciaSuelo=self.sensorUltrasonido.getLastInfo()['altura']
         if (distanciaSuelo>=self.alcanceUltrasonido):
@@ -145,13 +147,13 @@ class ControladorDronMulticoptero(ControladorDronVolador):
         distanciaInicial=self.getDistanciaSuelo()
         distanciaAlcanzada=distanciaInicial
 
-        velocidad=velocidadEstable*0.8
+        velocidad= self.velocidadEstable * 0.8
         self.actuadorOP.setThrotle(velocidad)
         while (distanciaAlcanzada>40 ):
              distanciaAlcanzada=self.getDistanciaSuelo()
              time.sleep(.300)
 
-        velocidad=velocidadEstable/2
+        velocidad= self.velocidadEstable / 2
         self.actuadorOP.setThrotle(velocidad)
         while (distanciaAlcanzada>10 ):
              distanciaAlcanzada=self.getDistanciaSuelo()
@@ -271,12 +273,12 @@ class ControladorDronMulticoptero(ControladorDronVolador):
     # devuelve x y z (longitud, latitud y altura al suelo en cm) como una tupla
     def getCoordenadas(self):
         xyz=self.sensorGPS.getCoordenadas()
-        x=xy['latitud']
-        y=xy['longitud']
+        x=xyz['latitud']
+        y=xyz['longitud']
         z=self.getDistancaSuelo()
         return {'x':x,'y':y,'z':z}
 
-    # avanza el dron en dirección a al acabeza
+    # avanza el dron en direccion a al acabeza
     def irAdelante(self, velocidad):
         velocidad=self.velocidadEstable+abs(velocidad)
         if (velocidad>self.velocidadMaxMotores):
@@ -286,7 +288,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
         self.pitch_abajo(self.anguloAvance,5)
         self.actuadorOP.setThrotle(velocidad)
 
-    # avanza el dron en dirección contraria a la cabeza
+    # avanza el dron en direccion contraria a la cabeza
     def irAtras(self, velocidad):
         velocidad=self.velocidadEstable+abs(velocidad)
         if (velocidad>self.velocidadMaxMotores):
@@ -321,7 +323,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
         self.pitch_abajo(0,5)
         self.roll_derecha(0,5)
 
-    # estabilizado - acrobatico y tiene 6 modos más
+    # estabilizado - acrobatico y tiene 6 modos mas
     def setModo(self,modo):
         self.actuadorOP.setModoVuelo(modo)
 
@@ -329,7 +331,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
         self.nivelarDron()
         self.actuadorOP.setThrotle(self.velocidadEstable)
 
-    # devuelve los valores de modos de vuelo en un diccionario:{'estabilizado', 'acrobático'}
+    # devuelve los valores de modos de vuelo en un diccionario:{'estabilizado', 'acrobatico'}
     def getModosDeOperacion(self):
         return self.modosDeOperacion
 

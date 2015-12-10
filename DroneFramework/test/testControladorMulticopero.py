@@ -1,11 +1,4 @@
-import Reconocedor_Fuego_Humo as fire_detector
 from DroneFramework.capaDronBajoNivel.controladorDronMulticoptero import ControladorDronMulticoptero as drone
-
-def anomalyDetect(img):
-    detected = False;
-    return fire_detector.detectar_fuego_humo(img)
-
-def anomalyDetected():
 
     the_drone = drone.ControladorDronMulticoptero()
     the_drone.encender()
@@ -13,6 +6,3 @@ def anomalyDetected():
     the_drone.yaw(360, 10)
     the_drone.down(10,1)
     the_drone.apagar()
-
-
-anomalyDetected()

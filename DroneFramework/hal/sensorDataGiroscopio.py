@@ -1,5 +1,5 @@
 from sensorData import SensorData
-from drivers.driver import Driver
+from DroneFramework.drivers.driver import Driver
 
 
 __author__ = 'Diego Garcia'

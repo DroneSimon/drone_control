@@ -2,10 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1987b1e2-12a5-4aa0-aeb8-a877a79c0212" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AutonomousControl.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DroneFramework/test/testControladorMulticopero.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ImgServer.py" afterPath="$PROJECT_DIR$/ImgServer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/socket/server.py" afterPath="$PROJECT_DIR$/socket/server.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AutonomousControl.py" afterPath="$PROJECT_DIR$/AutonomousControl.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DroneFramework/.idea/workspace.xml" afterPath="$PROJECT_DIR$/DroneFramework/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DroneFramework/capaDronBajoNivel/controladorDronMulticoptero.py" afterPath="$PROJECT_DIR$/DroneFramework/capaDronBajoNivel/controladorDronMulticoptero.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DroneFramework/hal/actuadorOpenPilot.py" afterPath="$PROJECT_DIR$/DroneFramework/hal/actuadorOpenPilot.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DroneFramework/hal/sensorBateria.py" afterPath="$PROJECT_DIR$/DroneFramework/hal/sensorBateria.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DroneFramework/hal/sensorData.py" afterPath="$PROJECT_DIR$/DroneFramework/hal/sensorData.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DroneFramework/hal/sensorDataBateria.py" afterPath="$PROJECT_DIR$/DroneFramework/hal/sensorDataBateria.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DroneFramework/hal/sensorDataGPS.py" afterPath="$PROJECT_DIR$/DroneFramework/hal/sensorDataGPS.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DroneFramework/hal/sensorDataGiroscopio.py" afterPath="$PROJECT_DIR$/DroneFramework/hal/sensorDataGiroscopio.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DroneFramework/hal/sensorDataMagnetometro.py" afterPath="$PROJECT_DIR$/DroneFramework/hal/sensorDataMagnetometro.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DroneFramework/hal/sensorDataUltrasonido.py" afterPath="$PROJECT_DIR$/DroneFramework/hal/sensorDataUltrasonido.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DroneFramework/hal/sensorGPS.py" afterPath="$PROJECT_DIR$/DroneFramework/hal/sensorGPS.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DroneFramework/hal/sensorGiroscopio.py" afterPath="$PROJECT_DIR$/DroneFramework/hal/sensorGiroscopio.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DroneFramework/hal/sensorMagnetometro.py" afterPath="$PROJECT_DIR$/DroneFramework/hal/sensorMagnetometro.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DroneFramework/hal/sensorUltrasonido.py" afterPath="$PROJECT_DIR$/DroneFramework/hal/sensorUltrasonido.py" />
     </list>
     <ignored path="drone_control.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,54 +43,42 @@
         <entry file="file://$PROJECT_DIR$/AutonomousControl.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-              <folding>
-                <element signature="e#0#46#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="actuadorOpenPilot.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/DroneFramework/hal/actuadorOpenPilot.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46650717">
-              <caret line="37" column="39" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ImgServer.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ImgServer.py">
+      <file leaf-file-name="driverGiroscopio.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DroneFramework/drivers/driverGiroscopio.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+              <caret line="108" column="29" selection-start-line="108" selection-start-column="29" selection-end-line="108" selection-end-column="29" />
               <folding>
-                <element signature="e#162#178#0" expanded="true" />
+                <element signature="e#19#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Reconocedor_Fuego_Humo.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Reconocedor_Fuego_Humo.py">
+      <file leaf-file-name="controladorDronMulticoptero.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DroneFramework/capaDronBajoNivel/controladorDronMulticoptero.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="control.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/socket/control.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="40" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="40" />
+            <state vertical-scroll-proportion="1.2180974">
+              <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="driverGPS.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DroneFramework/drivers/driverGPS.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -102,11 +103,23 @@
         <option value="$PROJECT_DIR$/ImgServer.py" />
         <option value="$PROJECT_DIR$/AutonomousControl.py" />
         <option value="$PROJECT_DIR$/DroneFramework/hal/actuadorOpenPilot.py" />
+        <option value="$PROJECT_DIR$/DroneFramework/hal/sensorGPS.py" />
+        <option value="$PROJECT_DIR$/DroneFramework/hal/sensorDataGPS.py" />
+        <option value="$PROJECT_DIR$/DroneFramework/hal/sensorData.py" />
+        <option value="$PROJECT_DIR$/DroneFramework/hal/sensorGiroscopio.py" />
+        <option value="$PROJECT_DIR$/DroneFramework/hal/sensorDataGiroscopio.py" />
+        <option value="$PROJECT_DIR$/DroneFramework/hal/sensorUltrasonido.py" />
+        <option value="$PROJECT_DIR$/DroneFramework/hal/sensorDataUltrasonido.py" />
+        <option value="$PROJECT_DIR$/DroneFramework/hal/sensorMagnetometro.py" />
+        <option value="$PROJECT_DIR$/DroneFramework/hal/sensorDataMagnetometro.py" />
+        <option value="$PROJECT_DIR$/DroneFramework/hal/sensorBateria.py" />
+        <option value="$PROJECT_DIR$/DroneFramework/hal/sensorDataBateria.py" />
+        <option value="$PROJECT_DIR$/DroneFramework/capaDronBajoNivel/controladorDronMulticoptero.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="18" />
+    <option name="x" value="3" />
     <option name="y" value="23" />
     <option name="width" value="1279" />
     <option name="height" value="725" />
@@ -154,20 +167,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drone_control" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drone_control" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="socket" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -184,7 +183,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.ImgServer">
+  <component name="RunManager" selected="Python.AutonomousControl">
     <configuration default="false" name="ImgServer" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -249,6 +248,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="drone_control" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ImgServer2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="AutonomousControl" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/Cellar/python/2.7.10/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="drone_control" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/AutonomousControl.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -375,18 +391,20 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="4">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.ImgServer" />
       <item index="1" class="java.lang.String" itemvalue="Python.server" />
       <item index="2" class="java.lang.String" itemvalue="Python.VisualFilters" />
       <item index="3" class="java.lang.String" itemvalue="Python.ImgServer2" />
+      <item index="4" class="java.lang.String" itemvalue="Python.AutonomousControl" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.ImgServer" />
-        <item index="1" class="java.lang.String" itemvalue="Python.ImgServer2" />
-        <item index="2" class="java.lang.String" itemvalue="Python.VisualFilters" />
-        <item index="3" class="java.lang.String" itemvalue="Python.server" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.AutonomousControl" />
+        <item index="1" class="java.lang.String" itemvalue="Python.ImgServer" />
+        <item index="2" class="java.lang.String" itemvalue="Python.ImgServer2" />
+        <item index="3" class="java.lang.String" itemvalue="Python.VisualFilters" />
+        <item index="4" class="java.lang.String" itemvalue="Python.server" />
       </list>
     </recent_temporary>
   </component>
@@ -401,15 +419,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="18" y="23" width="1279" height="725" extended-state="0" />
-    <editor active="true" />
+    <frame x="3" y="23" width="1279" height="725" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24863175" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24863175" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2920635" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22857143" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -448,7 +466,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="108" column="18" selection-start-line="108" selection-start-column="18" selection-end-line="108" selection-end-column="18" />
           <folding>
-            <element signature="e#162#178#0" expanded="true" />
+            <element signature="e#162#178#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -476,7 +494,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="108" column="18" selection-start-line="108" selection-start-column="18" selection-end-line="108" selection-end-column="18" />
           <folding>
-            <element signature="e#162#178#0" expanded="true" />
+            <element signature="e#162#178#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -504,7 +522,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#162#178#0" expanded="true" />
+            <element signature="e#162#178#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -524,7 +542,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#162#178#0" expanded="true" />
+            <element signature="e#162#178#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -575,7 +593,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -585,7 +603,141 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
           <folding>
-            <element signature="e#162#178#0" expanded="true" />
+            <element signature="e#162#178#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DroneFramework/hal/actuadorOpenPilot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="e#27#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DroneFramework/hal/sensorGPS.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DroneFramework/hal/sensorDataGPS.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="20" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DroneFramework/hal/sensorData.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DroneFramework/hal/sensorGiroscopio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="20" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DroneFramework/hal/sensorDataUltrasonido.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DroneFramework/hal/sensorMagnetometro.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python2.7/site-packages/serial/serialposix.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="288" column="0" selection-start-line="288" selection-start-column="0" selection-end-line="288" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python2.7/site-packages/serial/serialutil.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="281" column="0" selection-start-line="281" selection-start-column="0" selection-end-line="281" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DroneFramework/hal/sensorDataBateria.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.035885166">
+          <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DroneFramework/hal/sensorBateria.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="20" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DroneFramework/hal/sensorDataMagnetometro.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="20" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DroneFramework/hal/sensorUltrasonido.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1076555">
+          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DroneFramework/hal/sensorDataGiroscopio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.035885166">
+          <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DroneFramework/drivers/driverGPS.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DroneFramework/drivers/driverGiroscopio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="108" column="29" selection-start-line="108" selection-start-column="29" selection-end-line="108" selection-end-column="29" />
+          <folding>
+            <element signature="e#19#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -593,17 +745,15 @@
     <entry file="file://$PROJECT_DIR$/AutonomousControl.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DroneFramework/hal/actuadorOpenPilot.py">
+    <entry file="file://$PROJECT_DIR$/DroneFramework/capaDronBajoNivel/controladorDronMulticoptero.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46650717">
-          <caret line="37" column="39" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
+        <state vertical-scroll-proportion="1.2180974">
+          <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
           <folding />
         </state>
       </provider>
