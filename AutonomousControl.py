@@ -5,7 +5,7 @@ def anomalyDetect(img):
     detected = False;
     return fire_detector.detectar_fuego_humo(img)
 
-def anomalyDetected():
+def anomalyDetectedOK():
 
     the_drone = drone.ControladorDronMulticoptero()
     the_drone.encender()
@@ -15,4 +15,4 @@ def anomalyDetected():
     the_drone.apagar()
 
 
-anomalyDetected()
+
