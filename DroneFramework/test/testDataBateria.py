@@ -1,5 +1,5 @@
 import unittest
-from hal.sensorDataBateria import SensorDataBateria
+from DroneFramework.hal.sensorDataBateria import SensorDataBateria
 from datetime import *
 
 

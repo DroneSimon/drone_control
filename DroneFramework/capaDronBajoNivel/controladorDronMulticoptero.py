@@ -1,6 +1,6 @@
 from DroneFramework.drivers.driverGiroscopio import DriverGiroscopio
 
-_autor_= "Indira Camacho"
+_autor_= "I.C.C."
 
 import time
 from DroneFramework.hal.actuadorOpenPilot import ActuadorOpenPilot
@@ -14,7 +14,7 @@ from DroneFramework.drivers.driverGPS import DriverGPS
 from DroneFramework.drivers.driverMagnetometro import DriverMagnetometro
 from DroneFramework.drivers.driverUltrasonido import DriverUltrasonido
 
-# falta driver de nivel de bateria y de giroscopio
+# falta driver de nivel de bateria
 
 
 from controladorDronVolador import ControladorDronVolador
@@ -36,15 +36,15 @@ class ControladorDronMulticoptero(ControladorDronVolador):
         self.altitudSuelo=self.sensorGPS.getLastInfo().getData()['altitud']*100
 
         # para yaw, pitch, roll
-        self.velocidadMaxGiroOP=50
-        self.velocidadCeroGiroOP=50
+        self.velocidadMaxGiroOP=50  # arriba de 50 gira
+        self.velocidadCeroGiroOP=50 # cuando esta 50 esta sin girar a ningun lado
 
         # para Throtle
         self.velocidadEstable=64
         self.velocidad10cm=30
         self.velocidad5cm=20
         self.velocidadMaxMotores=100
-        self.distanciaMinimaDelSuelo=1  # 30 centimetros
+        self.distanciaMinimaDelSuelo=1  # 30 centimetros para aterrizar
 
         # angulo para avanzar
         self.anguloAvance=5
@@ -57,15 +57,17 @@ class ControladorDronMulticoptero(ControladorDronVolador):
     def encender(self):
         self.actuadorOP.encender()
 
+    #pone la altidud actual del GPS
     def setAltitudSuelo(self):
         self.altitudSuelo=self.sensorGPS.getLastInfo().getData()['altitud']
 
+   # apagar equivale a decir que desarme motores en OP
     def apagar(self):
         self.actuadorOP.apagar()
 
     # giro lateral de la cabeza desde la pocision donde esta
     # velocidad es un entero de 1 al 50, no puede ser 0
-    # si grados es negativo ira a la izquierda
+    # si grados es negativo ira a la izquierda, sino a la derecha
     def yaw(self, grados, velocidad):
         anguloInicial=self.sensorMagnetometro.getAnguloCabezaDron()
         gradosAlcanzados=0
@@ -83,11 +85,11 @@ class ControladorDronMulticoptero(ControladorDronVolador):
 
     # giro lateral de la cabeza a la izquierda desde la posicion donde esta
     def yaw_izquierda(self, grados, velocidad):
-        self.yaw(-grados,velocidad)
+        self.yaw(-abs(grados),velocidad)
 
     # giro lateral de la cabeza a la derecha desde la pocision donde esta
     def yaw_derecha(self, grados, velocidad):
-        self.yaw(grados,velocidad)
+        self.yaw(abs(grados),velocidad)
 
     # elevar el dron: distancia estara en centimetros y es la distancia que debe subir desde donde esta
     # velocidad para elevarse debe ser mayor a velocidadEstable y menor a velocidadMaxMotores
