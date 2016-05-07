@@ -1,6 +1,6 @@
 import unittest
-from drivers.driver import Driver
-from hal.sensorGiroscopio import SensorGiroscopio
+from DroneFramework.drivers.driver import Driver
+from DroneFramework.hal.sensorGiroscopio import SensorGiroscopio
 
 
 data = {'x': 1, 'y': 6, 'z': 3, 'inclinacion_x' : 90, 'inclinacion_y' : 180}

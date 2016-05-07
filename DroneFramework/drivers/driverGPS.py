@@ -1,13 +1,17 @@
 import time
-import serial
+# import serial   # borrar comentario cuando corra en raspberry
+import DroneFramework.mocks.GpsMock as serial # comentar al llevar a raspberry
 import re, os
 import pynmea2
 
+""" descomentar para raspberry
 ser = serial.Serial(
     port = '/dev/ttyUSB0',
     baudrate = 4800 ,
     timeout = 1
 )
+"""
+ser = serial.GpsMock()  # comentar linea cuando corra en la raspberry
 
 try:
 	while 1 :
@@ -29,7 +33,6 @@ except KeyboardInterrupt:
 #modified by Diego Garcia
 from driver import Driver
 class DriverGPS(Driver):
-
 	def getData(self):
 
 		while True :

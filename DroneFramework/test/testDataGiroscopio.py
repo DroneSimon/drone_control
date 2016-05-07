@@ -38,10 +38,10 @@ class SensorDataGiroscopioTest(unittest.TestCase):
 
     def test_setData(self):
 
-        dataGPS = self.dataGiroscopio
+        dataGiroscopio = self.dataGiroscopio
         new_data = {'x': 4, 'y': 7, 'z': 6, 'angulo' : 50}
-        dataGPS.setData(new_data)
-        self.assertEquals(dataGPS.getData(), new_data)
+        dataGiroscpio.setData(new_data)
+        self.assertEquals(dataGiroscopio.getData(), new_data)
 
     def test_getAge(self):
 

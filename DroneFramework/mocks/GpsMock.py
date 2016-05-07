@@ -1,7 +1,14 @@
-import mock.py
+from mock import MagicMock
 
-def test():
-  from mock import MagicMock
-  sensorGPS = MagicMock(return_value=['Altitud: 100','Longitud: 50'])
-  print sensorGPS.return_value
-  sensorGPS(return_altitude='35')
+
+class GpsMock (object):
+
+    def readline(self):
+
+        archivo = open("gpsDataCaptured.serial","r")
+        #archivo = open("/drone_control/DroneFramework/mocks/gpsDataCaptured.serial","r")
+        linea1 = archivo.readline()
+        sensorGPS = MagicMock(return_value=linea1)
+        print sensorGPS.return_value
+        return linea1
+

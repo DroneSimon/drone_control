@@ -1,0 +1,1 @@
+Esta carpeta contiene objetos falsos para correr sin la raspberry

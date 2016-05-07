@@ -22,7 +22,7 @@ class SensorDataMagnetometroTest(unittest.TestCase):
     def test_setData(self):
 
         dataMagnetometro = self.dataMagnometro
-        new_data = {'altura': 50}
+        new_data = {'angulo': 50}
         dataMagnetometro.setData(new_data)
         self.assertEquals(dataMagnetometro.getData(), new_data)
 
