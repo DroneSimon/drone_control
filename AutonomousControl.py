@@ -21,9 +21,14 @@ def anomalyDetectedOK():
     the_drone.apagar()
 
 
-from DroneFramework.test.ejerciciosConMocks.moduloDeLlamadaATests import correrEjerciciosDeTestConMocks
+#from DroneFramework.test.ejerciciosConMocks.moduloDeLlamadaATests import correrEjerciciosDeTestConMocks
+
+from DroneFramework.test.driversTest.GPSSensorTest import GPSSensorTest
 def main():
-    correrEjerciciosDeTestConMocks()
+    #correrEjerciciosDeTestConMocks()
+    testGPSDriver=GPSSensorTest('test_getData')
+    testGPSDriver.test_getData()
+    testGPSDriver.test_forceRead()
 
     print "main"
 

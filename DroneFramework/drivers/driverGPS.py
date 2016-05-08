@@ -1,19 +1,17 @@
 import time
-# import serial   # borrar comentario cuando corra en raspberry
-import DroneFramework.mocks.GpsMock as serial # comentar al llevar a raspberry
+import serial
+
+
 import re, os
 import pynmea2
 
-""" descomentar para raspberry
 ser = serial.Serial(
     port = '/dev/ttyUSB0',
     baudrate = 4800 ,
     timeout = 1
 )
-"""
-ser = serial.GpsMock()  # comentar linea cuando corra en la raspberry
+'''
 
-try:
 	while 1 :
 		time.sleep( 0.1 )
 		linea = str( ser.readline() )
@@ -28,24 +26,32 @@ try:
 except KeyboardInterrupt:
 	ser.flush()
 	ser.close()
-
+'''
 
 #modified by Diego Garcia
 from driver import Driver
 class DriverGPS(Driver):
 	def getData(self):
-
-		while True :
-			time.sleep( 0.1 )
-			linea = str( ser.readline() )
-			if re.match( "\$GPGGA" , linea ):
-				partes_linea = pynmea2.parse( linea )
-				if partes_linea.latitude:
-					data = dict()
-					data['latitud'] = partes_linea.latitude
-					data['longitud'] = partes_linea.longitude
-					data['altitud'] = partes_linea.altitude
-					return data
+		data=dict()
+		data['latitud'] = 0
+		data['longitud'] =0
+		data['altitud'] = 0
+		try:
+			while True :
+				time.sleep( 0.1 )
+				linea = str( ser.readline() )
+				if re.match( "\$GPGGA" , linea ):
+					partes_linea = pynmea2.parse( linea )
+					if partes_linea.latitude:
+						data = dict()
+						data['latitud'] = partes_linea.latitude
+						data['longitud'] = partes_linea.longitude
+						data['altitud'] = partes_linea.altitude
+						return data
+		except KeyboardInterrupt:
+			ser.flush()
+			ser.close()
+		return data
 
 	def getStatus(self):
 		# tiene los datos del sensor

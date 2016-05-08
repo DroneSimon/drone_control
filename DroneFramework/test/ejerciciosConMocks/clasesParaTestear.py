@@ -67,17 +67,20 @@ class UploadServiceTestCase(unittest.TestCase):
         # testea si se llama correctaente al revicio rm de removalService
         mock_RemovalService.rm.assert_called_with("any_path")
 
-#Testeo de la clase UploadService, con el Mocking del método de una instancia
+#Testeo de la clase UploadService, con el Mocking del método de una instancia : RemovalService.rm
 # usando el método decorador de mock @mock.patch.object para métodos y propiedades
 class UploadServiceTestCaseUsingMockDeObjects(unittest.TestCase):
 
-    @mock.patch.object(RemovalService, 'rm')
+    # Notar el parámetro autoespect que hace que el número de argumentos utilizados
+    # en la llamada tb sean los que estamos utilizando
+    @mock.patch.object(RemovalService, 'rm', autoespect=True)
     def test_upload_complete(self, mock_rm):
         # build our dependencies
         removal_service = RemovalService()
         reference = UploadService(removal_service)
 
         # call upload_complete, which should, in turn, call `rm`:
+
         reference.upload_complete("my uploaded file")
 
         # check that it called the rm method of any RemovalService
