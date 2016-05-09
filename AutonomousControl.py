@@ -24,13 +24,32 @@ def anomalyDetectedOK():
 #from DroneFramework.test.ejerciciosConMocks.moduloDeLlamadaATests import correrEjerciciosDeTestConMocks
 
 from DroneFramework.test.driversTest.GPSSensorTest import GPSSensorTest
+from DroneFramework.test.driversTest.MagnetometroSensorTest import MagnetometroSensorTest
+from DroneFramework.test.driversTest.GiroscopioSensorTest import GiroscopioSensorTest
+
 def main():
     #correrEjerciciosDeTestConMocks()
+    #driverGPS Test
+    #==============
     testGPSDriver=GPSSensorTest('test_getData')
     testGPSDriver.test_getData()
     testGPSDriver.test_forceRead()
 
+    #driverGiroscopio Test
+    #=======================
+    testGiroscopioDriver=GiroscopioSensorTest('test_getData')
+    testGiroscopioDriver.test_getData()
+    testGiroscopioDriver.test_forceRead()
     print "main"
+
+'''
+    #driverMagnetometro Test
+    #=======================
+    testMagnetometroDriver=MagnetometroSensorTest('test_getData')
+    testMagnetometroDriver.test_getData()
+    testMagnetometroDriver.test_forceRead()
+'''''
+
 
 if __name__ == '__main__':
 	main()

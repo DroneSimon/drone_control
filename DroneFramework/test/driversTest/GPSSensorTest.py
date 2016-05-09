@@ -5,7 +5,7 @@ import unittest
 import mock
 from DroneFramework.drivers.driverGPS import DriverGPS
 import DroneFramework.drivers.driverGPS
-# Esta clase testeara la clase los metodos de la clase DriverGPS del paquete drivers
+# Esta clase testeará los metodos de la clase DriverGPS del paquete drivers
 # Se enmascará el comportamiento de serial de la raspberry
 class GPSSensorTest(unittest.TestCase):
 

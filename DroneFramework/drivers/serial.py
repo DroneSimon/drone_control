@@ -1,6 +1,7 @@
 class Serial():
     def __init__(self, port, baudrate,timeout):
-        print "serial.Serial que no debe ejecutarse"
+        print "serial.Serial que no debe llamarse en la raspberry, pero se necesita el momento del import para que corran las rpuebas"
 
-    def readline(self):
+'''    def readline(self):
         return "cualquier cosa"
+'''

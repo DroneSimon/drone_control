@@ -25,7 +25,7 @@ def read_word_2c(adr):
 
 def write_byte(adr, value):
     bus.write_byte_data(address, adr, value)
-
+'''
 try:
 	while 1 :
 		write_byte(0, 0b01110000) # Set to 8 samples @ 15Hz
@@ -46,7 +46,7 @@ try:
 		time.sleep( .2 )
 except KeyboardInterrupt:
 	print "Termino la lectura: magnetometro"
-
+'''
 
 #modified by Diego Garcia
 from driver import Driver
