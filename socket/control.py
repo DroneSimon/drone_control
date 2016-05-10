@@ -4,7 +4,7 @@
 #refactor Jorge Encinas
 # Implementacion Ubaldino Zurita
 
-import RPi.GPIO as GPIO
+import RPi_porsi.GPIO as GPIO
 from time import sleep
 
 class Control:

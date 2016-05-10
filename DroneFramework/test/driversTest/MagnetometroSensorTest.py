@@ -26,7 +26,6 @@ class MagnetometroSensorTest(unittest.TestCase):
     def test_forceRead(self,mock_getData):
         # instantiate our service
         refSensorMagnetometro= DriverMagnetometro()
-        print "se inicializo el modulo smbus usado por DriverMagnetometro"
         # llamada al metodo get_data usado por force read
         print "DriverMagnetometro.forceRead= ",    refSensorMagnetometro.forceRead()
         self.assertTrue(mock_getData.called, "Error no se ejecuto el getData()")

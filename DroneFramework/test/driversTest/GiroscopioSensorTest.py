@@ -26,7 +26,6 @@ class GiroscopioSensorTest(unittest.TestCase):
     def test_forceRead(self,mock_getData):
         # instantiate our service
         refSensorGiroscopio= DriverGiroscopio()
-        print "se inicializo el modulo smbus usado por DriverGiroscopio"
         # llamada al metodo get_data usado por force read
         print "DriverGiroscopio.forceRead= ",    refSensorGiroscopio.forceRead()
         self.assertTrue(mock_getData.called, "Error no se ejecuto el getData()")

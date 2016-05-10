@@ -1,4 +1,4 @@
-import RPi.GPIO as GPIO  
+import RPi.GPIO as GPIO
 import time                
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
@@ -8,7 +8,7 @@ GPIO_ECHO    = 18
 GPIO.setup(GPIO_TRIGGER,GPIO.OUT)  
 GPIO.setup(GPIO_ECHO,GPIO.IN)      
 GPIO.output(GPIO_TRIGGER,False)
-
+'''
 try:
     while True:    
         GPIO.output(GPIO_TRIGGER,True)  
@@ -27,7 +27,7 @@ except KeyboardInterrupt:
     print "quit"                         
     GPIO.cleanup()
 
-
+'''
 #modified by Diego Garcia
 from driver import Driver
 class DriverUltrasonido(Driver):

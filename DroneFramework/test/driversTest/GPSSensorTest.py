@@ -26,10 +26,7 @@ class GPSSensorTest(unittest.TestCase):
     def test_forceRead(self,mock_getData):
         # instantiate our service
         refSensorGPS= DriverGPS()
-        print "se inicializo el modulo serial usado por GPS"
-        # set up the mock
-
-        # llamada al metodo get data
+        # llamada al metodo get_data
         print "DriverGPS.forceRead= ",refSensorGPS.forceRead()
         self.assertTrue(mock_getData.called, "Error no se ejecuto el getData()")
         print "DriverGPS.forceRead() Testeado"

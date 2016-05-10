@@ -1,5 +1,5 @@
 # Refactor Jorge Encinas
-import RPi.GPIO as GPIO
+import RPi_porsi.GPIO as GPIO
 import time
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
