@@ -58,6 +58,8 @@ class SensorVirtual(threading.Thread):
          and the position [12] contains rotation in X and [13] rotation in Y,
         float if Ultrasonic instantiated,
         float if Magnetometer instantiated."""
+        while self.data is None:
+            sleep(0.05)
         return self.data
 
     def getDataTypeSensor(self, line, f):
@@ -114,7 +116,6 @@ class SensorVirtual(threading.Thread):
         if isinstance(line, basestring):
             return None  # no parse sensor data
         return line
-
 
 def testSensorFiles():
     fileMagnetometer = 'sensorMagnetometro.i2c.serial'
