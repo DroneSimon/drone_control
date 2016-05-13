@@ -6,7 +6,7 @@ from DroneFramework.drivers.driver import Driver
 from DroneFramework.drivers.virtual.sensorVirtual import SensorVirtual
 
 
-class DriverUltrasonicoVirtual(Driver):
+class DriverUltrasonidoVirtual(Driver):
     def __init__(self):
         self.file = 'sensorUltrasonico.gpio.serial'
         self.file = os.path.join(os.getcwd(), 'DroneFramework', 'drivers','virtual', self.file)
@@ -27,9 +27,10 @@ class DriverUltrasonicoVirtual(Driver):
         # ok, no_ok, excepcion,
         raise NotImplementedError("Should have implemented this")
 
+    @property
     def forceRead(self):
         # fuerza a hacer una nueva lectura al sensor
-        raise NotImplementedError("Should have implemented this")
+        return self.getData()
 
     def reset(self):
         # inicializa datos sensor
