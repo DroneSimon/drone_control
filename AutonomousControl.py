@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
-os.chdir("D:\\tallerDrones\\gitFM\drone_control\\DroneFramework\\mocks")
+#os.chdir("D:\\tallerDrones\\gitFM\drone_control\\DroneFramework\\mocks")
+os.path.join(os.getcwd(), 'DroneFramework', 'mocks')
 
 #import DroneFramework.drivers.driverGPS as GPS_driver
 #import DroneFramework.drivers.driverGiro as GPS_driver

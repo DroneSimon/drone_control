@@ -18,7 +18,7 @@ class ActuadorOpenPilot:
 		self.ser.write(cad)
 
 	def reiniciar( self ):
-		print "no implementado reinicar"
+		print "no implementado reinicar no sería lo mismo que reset?"
 	""" uso para except KeyboardInterrupt o similares"""
 	def interrumpir( self ):
 		print "no implementado interrumpir"

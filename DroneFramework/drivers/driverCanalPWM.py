@@ -1,6 +1,6 @@
 _autor_ = "Jorge Encinas"
 
-import RPi_porsi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 class CanalPWM:
 	"""control PWM"""
