@@ -1,9 +1,6 @@
 #!/usr/bin/python
 
-import smbus  # ojo Habilitar para la raspebrry
-import DroneFramework.mocks.SensorVirtual as sensorVirtual # ojo deshabilitar para la raspberry
-
-sensorGiroscopio= sensorVirtual.SensorVirtual('giroscopio', 'sensorGiroscopio.i2c.serial') #ojo deshabilitar para la raspberry
+import smbus
 
 import math, time, os
 

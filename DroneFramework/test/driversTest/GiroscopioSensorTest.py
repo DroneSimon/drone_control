@@ -10,7 +10,7 @@ import DroneFramework.drivers.driverGiroscopio
 # que es una instancia de smbus.SMBus.(0), que implementa la raspberry
 class GiroscopioSensorTest(unittest.TestCase):
 
-    @mock.patch.object(DroneFramework.drivers.driverGiroscopio,'bus', autospect=True)
+   #@mock.patch.object(DroneFramework.drivers.driverGiroscopio,'bus', autospect=True)
     def test_getData(self, mock_bus):
         # instantiate our service
         refSensorGiroscopio= DriverGiroscopio()
