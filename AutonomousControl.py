@@ -23,45 +23,16 @@ def anomalyDetectedOK():
 
 
 #from DroneFramework.test.ejerciciosConMocks.moduloDeLlamadaATests import correrEjerciciosDeTestConMocks
+from DroneFramework.test.driversTests.correrTestDeDrivers import correrTestDeDrivers
 
-from DroneFramework.test.driversTest.GPSSensorTest import GPSSensorTest
-from DroneFramework.test.driversTest.MagnetometroSensorTest import MagnetometroSensorTest
-from DroneFramework.test.driversTest.GiroscopioSensorTest import GiroscopioSensorTest
-from DroneFramework.test.driversTest.UltrasonidoSensorTest import UltrasonidoSensorTest
+
 
 def main():
     #correrEjerciciosDeTestConMocks()
-    #driverGPS Test
-    #==============
-    print "\n------------------   TEST GPS   --------------------"
-    testGPSDriver=GPSSensorTest('test_getData')
-    testGPSDriver.test_getData()
-    testGPSDriver.test_forceRead()
-
-    #driverUltrasonido Test
-    #=======================
-    print "\n ------------------   TEST ULTRASONIDO   --------------------"
-    testUltrasonidoDriver=UltrasonidoSensorTest('test_getData')
-    testUltrasonidoDriver.test_getData()
-    testUltrasonidoDriver.test_forceRead()
+    correrTestDeDrivers()
 
 
 
-    #driverMagnetometro Test
-    #=======================
-    print "\n ------------------   TEST MAGNETOMETRO   --------------------"
-    testMagnetometroDriver=MagnetometroSensorTest('test_getData')
-    testMagnetometroDriver.test_getData()
-    testMagnetometroDriver.test_forceRead()
-'''
-    #driverGiroscopio Test
-    #=======================
-    print "\n------------------   TEST GIROSCOPIO   --------------------"
-    testGiroscopioDriver=GiroscopioSensorTest('test_getData')
-    testGiroscopioDriver.test_getData()
-    testGiroscopioDriver.test_forceRead()
-
-'''''
 
 
 if __name__ == '__main__':

@@ -17,7 +17,7 @@ class DriverUltrasonidoVirtual(Driver):
         except KeyboardInterrupt:
             if self.SensorVirtual.getRunStatus():
                 self.SensorVirtual.stop()
-        print 'mode virtual sensor: Magnetometer is runing'
+        print 'mode virtual sensor: Ultrasonido is runing'
 
     def getData(self):
         return {'altura' : self.SensorVirtual.getData()}
@@ -27,7 +27,7 @@ class DriverUltrasonidoVirtual(Driver):
         # ok, no_ok, excepcion,
         raise NotImplementedError("Should have implemented this")
 
-    @property
+
     def forceRead(self):
         # fuerza a hacer una nueva lectura al sensor
         return self.getData()

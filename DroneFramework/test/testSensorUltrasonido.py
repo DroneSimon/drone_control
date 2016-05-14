@@ -33,23 +33,18 @@ class DriverUltrasonidoMock(Driver):
 class SensorUltrasonidoTest(unittest.TestCase):
 
     def setUp(self):
-
         self.sensorUltrasonido = SensorUltrasonido(DriverUltrasonidoMock(), alcance)
 
     def test_getLastInfo_NoNone(self):
-
         self.assertIsNotNone(self.sensorUltrasonido.getLastInfo())
 
     def test_getEstado_NoNone(self):
-
         self.assertIsNotNone(self.sensorUltrasonido.getStatus())
 
     def test_getAltura(self):
-
         self.assertEquals(self.sensorUltrasonido.getAltura(), data['altura'])
 
     def test_getAlacance(self):
-
         self.assertEquals(self.sensorUltrasonido.getAlcance(), alcance)
 
 

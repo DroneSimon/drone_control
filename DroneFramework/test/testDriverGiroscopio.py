@@ -1,7 +1,6 @@
 import unittest
 
 import cpuinfo
-
 raspberry = False
 info = cpuinfo.get_cpu_info()
 if info['arch'] == 'ARM_7':  # test sensor running in Raspberry PI
@@ -16,18 +15,6 @@ class TestDriverMethods(unittest.TestCase):
     def setUp(self):
         self.giroscopio = DriverGiroscopio()
 
-    # def exitTestFunc(self):
-    #     with self.assertRaises(SystemExit):
-    #         if not raspberry:
-    #             self.giroscopio.stop()
-    #             print "Giroscope Thread stop"
-    #         exit(0)
-    def tearDown(self):
-        if not raspberry:
-            self.giroscopio.stop()
-            print "Giroscope Thread stop"
-
-
 class testDriverGetData(TestDriverMethods):
     def runTest(self):
         self.data = self.giroscopio.getData()
@@ -37,7 +24,6 @@ class testDriverGetData(TestDriverMethods):
         self.assertTrue(self.x >= -180.0 and self.x <= 180.0, 'no esta en rango x: ' + str(self.x))
         self.assertTrue(self.y >= -180 and self.y <= 180, 'no esta en rango y: ' + str(self.y))
 
-
 class testDriverGetStatus(TestDriverMethods):
     def runTest(self):
         self.status = self.giroscopio.getStatus()
@@ -46,7 +32,6 @@ class testDriverGetStatus(TestDriverMethods):
                         or self.status is 'no ok'
                         # or self.status is EXCEPTION
                         , ' no se puede obtener el estado')
-
 
 class testDriverForceRead(TestDriverMethods):
     # dato anterio es igual al actual,
@@ -64,7 +49,3 @@ class testDriverReset(TestDriverMethods):
     # reiniciar el sensor
     def runTest(self):
         raise NotImplementedError("unit test no implementado")
-
-
-if __name__ == '__main__':
-    unittest.main()
