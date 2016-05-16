@@ -45,7 +45,8 @@ class GPSSensorTest(unittest.TestCase):
         self.altitud= self.data['altitud']
         self.assertTrue(self.latitud >= -180.0 and self.latitud <= 180.0, 'no esta en rango latitud: ' + str(self.latitud))
         self.assertTrue(self.longitud >= -180 and self.longitud <= 180, 'no esta en rango longitud: ' + str(self.longitud))
-        self.assertTrue(self.altitud >= -10000 and self.altitud <= 10000, 'no esta en rango altitud: ' + str(self.altitud))
+        # La altitud esta en metros
+        self.assertTrue(self.altitud >= 0 and self.altitud <= 30000, 'no esta en rango altitud: ' + str(self.altitud))
         print "DriverGPS.getData() Testeado"
 
 

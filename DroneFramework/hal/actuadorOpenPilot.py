@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 _autor_ = "Jorge Encinas"
 
 from time import sleep
@@ -25,18 +26,18 @@ class ActuadorOpenPilot:
 
 	def setOnOf(self, valor):
 		if(valor == 1):
-			setRoll(50)
-			setPith(50)
-			setThrottle(0)
-			setYaw(100) # configurado en openpilot
-			sleep(2)
+			self.setRoll(50)
+			self.setPith(50)
+			self.setThrottle(0)
+			self.setYaw(100) # configurado en openpilot
+			self.sleep(2)
 			print "armado"
 		elif(valor == 0):
-			setRoll(50)
-			setPith(50)
-			setThrottle(0)
-			setYaw(0) # configurado en openpilot
-			sleep(2)
+			self.setRoll(50)
+			self.setPith(50)
+			self.setThrottle(0)
+			self.setYaw(0) # configurado en openpilot
+			self.sleep(2)
 			print "armado"
 		
 	def setRoll(self, vel):
@@ -64,22 +65,22 @@ class ActuadorOpenPilot:
 		self.writeSerial( 'a' + str(vel))
 
 	def getRoll(self):
-		return self.roll.valor
+		return self.roll
 
 	def getPitch(self):
-		return self.pitch.valor
+		return self.pitch
 
 	def getThrottle(self):
-		return self.throttle.valor
+		return self.throttle
 
 	def getYaw(self):
-		return self.yaw.valor
+		return self.yaw
 
 	def getModoVuelo(self):
-		return self.flightMode.valor
+		return self.flightMode
 
 	def getAux2(self):
-		return self.accessory0.valor
+		return self.accessory0
 
 
 	def resetearValores(self):
