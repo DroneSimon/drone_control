@@ -3,7 +3,6 @@ from capaDronBajoNivel.controladorDronMulticoptero import ControladorDronMultico
 
 from scipy.spatial import distance
 
-
 class DronMulticoptero (DronVolador):
 
     def __init__(self,controladorMulticoptero):
@@ -17,8 +16,6 @@ class DronMulticoptero (DronVolador):
     def aterrizar(self):
         alturaSuelo=self.controladorDron.getDistanciaSuelo()
         self.controladorDron.down(alturaSuelo-10)
-
-
 
     def orbitar(self,centro, radio):
         raise NotImplementedError( "Should have implemented this" )
