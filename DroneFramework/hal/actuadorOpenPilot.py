@@ -29,7 +29,7 @@ class ActuadorOpenPilot:
 			self.setPith(50)
 			self.setThrottle(0)
 			self.setYaw(100) # configurado en openpilot
-			self.sleep(2)
+			sleep(2)
 			print "armado"
 
 	def setOnOf(self, valor):
@@ -38,14 +38,14 @@ class ActuadorOpenPilot:
 			self.setPith(50)
 			self.setThrottle(0)
 			self.setYaw(100) # configurado en openpilot
-			self.sleep(2)
+			sleep(2)
 			print "armado"
 		elif(valor == 0):
 			self.setRoll(50)
 			self.setPith(50)
 			self.setThrottle(0)
 			self.setYaw(0) # configurado en openpilot
-			self.sleep(2)
+			sleep(2)
 			print "apagado"
 
 	def setRoll(self, vel):
