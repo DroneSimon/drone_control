@@ -4,16 +4,28 @@ _autor_= "I.C.C."
 
 import time
 from DroneFramework.hal.actuadorOpenPilot import ActuadorOpenPilot
+
 from DroneFramework.hal.sensorGPS import SensorGPS
 from DroneFramework.hal.sensorGiroscopio import SensorGiroscopio
 from DroneFramework.hal.sensorUltrasonido import SensorUltrasonido
 from DroneFramework.hal.sensorMagnetometro import SensorMagnetometro
 from DroneFramework.hal.sensorBateria import SensorBateria
 
-from DroneFramework.drivers.driverGPS import DriverGPS
-from DroneFramework.drivers.driverMagnetometro import DriverMagnetometro
-from DroneFramework.drivers.driverUltrasonido import DriverUltrasonido
 
+import cpuinfo
+raspberry = False
+info = cpuinfo.get_cpu_info()
+if info['arch'] == 'ARM_7':  # test sensor running in Raspberry PI
+    from DroneFramework.drivers.driverGPS import DriverGPS
+    from DroneFramework.drivers.driverMagnetometro import DriverMagnetometro
+    from DroneFramework.drivers.driverUltrasonido import DriverUltrasonido
+    from DroneFramework.drivers.driverGiroscopio import DriverGiroscopio
+    raspberry = True
+else:
+    from DroneFramework.drivers.virtual.driverMagnetometroVirtual import DriverMagnetometroVirtual as DriverMagnetometro
+    from DroneFramework.drivers.virtual.driverUltrasonidoVirtual import DriverUltrasonidoVirtual as DriverUltrasonido
+    from DroneFramework.drivers.virtual.driverGPSvirtual import  DriverGPSvirtual as DriverGPS
+    from DroneFramework.drivers.virtual.driverGiroscopioVirtual import DriverGiroscopioVirtual as DriverGiroscopio
 # falta driver de nivel de bateria
 
 
@@ -26,7 +38,8 @@ class ControladorDronMulticoptero(ControladorDronVolador):
 
         self.sensorMagnetometro = SensorMagnetometro(DriverMagnetometro())
         self.sensorGiroscopio=SensorGiroscopio(DriverGiroscopio())
-        self.sensorBateria= SensorBateria()
+        self.sensorGPS=SensorGPS(DriverGPS())
+        #self.sensorBateria= SensorBateria()
 
         self.alcanceUltrasonido=4000
         self.sensorUltrasonido = SensorUltrasonido(DriverUltrasonido(), self.alcanceUltrasonido)
@@ -96,7 +109,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
     # velocidad se sumara a la velocidad estable - hasta velocidadMaxMotores
     def up(self, distancia, velocidad):
 
-        distanciaInicial=self.getDistancaSuelo()
+        distanciaInicial=self.getDistanciaSuelo()
         distanciaAlcanzada=distanciaInicial
         distanciaFinal=distanciaInicial+distancia
 
@@ -107,7 +120,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
 
         self.actuadorOP.setThrotle(velocidad)
         while (distanciaAlcanzada<distanciaFinal & velocidad>self.velocidadEstable):
-             distanciaAlcanzada=self.getDistancaSuelo()
+             distanciaAlcanzada=self.getDistanciaSuelo()
              time.sleep(.300)
         self.actuadorOP.setThrotle(self.velocidadEstable)
 
@@ -269,7 +282,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
         self.actuadorOP.setPitch(self.velocidadCeroGiroOP)
 
     # devuelve los angulos x, y z en un diccionario
-    def getAngulosCabeza(self):
+    def getAnguloCabeza(self):
         return self.sensorGiroscopio.getLastInfo().getData()
 
     # devuelve x y z (longitud, latitud y altura al suelo en cm) como una tupla
@@ -277,7 +290,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
         xyz=self.sensorGPS.getCoordenadas()
         x=xyz['latitud']
         y=xyz['longitud']
-        z=self.getDistancaSuelo()
+        z=self.getDistanciaSuelo()
         return {'x':x,'y':y,'z':z}
 
     # avanza el dron en direccion a al acabeza
@@ -336,4 +349,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
     # devuelve los valores de modos de vuelo en un diccionario:{'estabilizado', 'acrobatico'}
     def getModosDeOperacion(self):
         return self.modosDeOperacion
+
+    def getStatus(self):
+        return 'ok'
 

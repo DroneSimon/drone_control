@@ -24,6 +24,14 @@ class ActuadorOpenPilot:
 	def interrumpir( self ):
 		print "no implementado interrumpir"
 
+	def encender(self):
+			self.setRoll(50)
+			self.setPith(50)
+			self.setThrottle(0)
+			self.setYaw(100) # configurado en openpilot
+			self.sleep(2)
+			print "armado"
+
 	def setOnOf(self, valor):
 		if(valor == 1):
 			self.setRoll(50)
@@ -38,8 +46,8 @@ class ActuadorOpenPilot:
 			self.setThrottle(0)
 			self.setYaw(0) # configurado en openpilot
 			self.sleep(2)
-			print "armado"
-		
+			print "apagado"
+
 	def setRoll(self, vel):
 		self.roll = vel
 		self.writeSerial( 'r' + str(vel))

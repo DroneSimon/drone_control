@@ -24,12 +24,14 @@ def anomalyDetectedOK():
 
 #from DroneFramework.test.ejerciciosConMocks.moduloDeLlamadaATests import correrEjerciciosDeTestConMocks
 from DroneFramework.test.driversTests.correrTestDeDrivers import correrTestDeDrivers
-
+from DroneFramework.capaDronBajoNivel.controladorDronMulticoptero import ControladorDronMulticoptero
 
 
 def main():
     #correrEjerciciosDeTestConMocks()
     correrTestDeDrivers()
+    dron= ControladorDronMulticoptero()
+    dron.encender()
 
 
 

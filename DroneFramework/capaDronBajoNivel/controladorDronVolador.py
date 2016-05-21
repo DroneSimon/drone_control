@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 _autor_= "I.C.C."
 
 import abc
@@ -57,7 +58,7 @@ class ControladorDronVolador(ControladorDron):
 
     # me da la distancia del dron al suelo
     @abc.abstractmethod
-    def getDistancaSuelo(self):
+    def getDistanciaSuelo(self):
         raise NotImplementedError( "Should have implemented this" )
 
     # dirige el dron hacia la dirección que apunta la cabeza
@@ -67,7 +68,7 @@ class ControladorDronVolador(ControladorDron):
 
     # obtiene los ángulos x, y,  z del giroscopio, que son los angulos de inclinación de la cabeza
     @abc.abstractmethod
-    def getAngulosCabeza(self):
+    def getAnguloCabeza(self):
         raise NotImplementedError( "Should have implemented this" )
 
 

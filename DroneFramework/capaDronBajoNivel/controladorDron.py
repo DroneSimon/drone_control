@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 _autor_= "I.C.C."
 
 import abc

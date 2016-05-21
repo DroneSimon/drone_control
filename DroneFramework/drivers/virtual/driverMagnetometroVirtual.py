@@ -24,7 +24,7 @@ class DriverMagnetometroVirtual(Driver):
     def getStatus(self):
         # tiene los datos del sensor
         # ok, no_ok, excepcion,
-        raise NotImplementedError("Should have implemented this")
+        return 'ok'
 
     def forceRead(self):
         # fuerza a hacer una nueva lectura al sensor
