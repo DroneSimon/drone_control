@@ -1,6 +1,6 @@
 class SMBus():
     def __init__(self, port):
-        print "smbusl.SMBus que no debe llamarse en la raspberry, pero se necesita el momento del import para que corran las pruebas"
+        print "smbusl.SMBus hola que no debe llamarse en la raspberry, pero se necesita el momento del import para que corran las pruebas"
 
     def read_byte_data(self, address, adr):
         return "Bearing: 88.4859266394"

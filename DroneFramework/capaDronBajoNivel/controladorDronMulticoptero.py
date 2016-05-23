@@ -1,5 +1,3 @@
-from DroneFramework.drivers.driverGiroscopio import DriverGiroscopio
-
 _autor_= "I.C.C."
 
 import time

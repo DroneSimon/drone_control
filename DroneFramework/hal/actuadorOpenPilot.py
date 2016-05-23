@@ -2,9 +2,15 @@
 _autor_ = "Jorge Encinas"
 
 from time import sleep
-import serial
 
-
+import cpuinfo
+raspberry = False
+info = cpuinfo.get_cpu_info()
+if info['arch'] == 'ARM_7':  # test sensor running in Raspberry PI
+    import serial
+    raspberry = True
+else:
+    import DroneFramework.drivers.serial_paraCorrerEnPC as serial
 
 class ActuadorOpenPilot:
 	"""control PWM para 6 canales en Modo 2"""
