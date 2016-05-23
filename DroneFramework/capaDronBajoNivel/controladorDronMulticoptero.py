@@ -44,7 +44,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
         self.alcanceUltrasonido=4000
         self.sensorUltrasonido = SensorUltrasonido(DriverUltrasonido(), self.alcanceUltrasonido)
 
-        #self.sensorGPS=SensorGPS(DriverGPS())
+
         # convierto la info del GPS a centimetros porque viene en metros
         self.altitudSuelo=self.sensorGPS.getLastInfo().getData()['altitud']*100
 

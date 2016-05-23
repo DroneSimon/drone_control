@@ -4,10 +4,10 @@ import os
 os.path.join(os.getcwd(), 'DroneFramework', 'mocks')
 
 #import DroneFramework.drivers.driverGPS as GPS_driver
-#import DroneFramework.drivers.driverGiro as GPS_driver
+
 
 import Reconocedor_Fuego_Humo as fire_detector
-#from DroneFramework.capaDronBajoNivel.controladorDronMulticoptero import ControladorDronMulticoptero as drone
+from DroneFramework.capaDronBajoNivel.controladorDronMulticoptero import ControladorDronMulticoptero as drone
 
 def anomalyDetect(img):
     detected = False;

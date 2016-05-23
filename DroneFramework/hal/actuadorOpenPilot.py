@@ -4,6 +4,8 @@ _autor_ = "Jorge Encinas"
 from time import sleep
 import serial
 
+
+
 class ActuadorOpenPilot:
 	"""control PWM para 6 canales en Modo 2"""
 	def __init__( self ):
@@ -64,9 +66,9 @@ class ActuadorOpenPilot:
 		self.yaw = vel
 		self.writeSerial( 'y' + str(vel))
 
-	def setModoVuelo(self, vel):
-		self.flightMode = vel
-		self.writeSerial( 'f' + str(vel))
+	def setModoVuelo(self, modo):
+		self.flightMode = modo
+		self.writeSerial( 'f' + str(modo))
 
 	def setAux2(self, vel):
 		self.accessory0 = vel
