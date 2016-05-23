@@ -1,8 +1,9 @@
 __autora__='I.C.C.'
 
+
 from DroneFramework.test.driversTests.GPSDriverTest import GPSSensorTest
 from DroneFramework.test.driversTests.MagnetometroDriverTest import MagnetometroSensorTest
-from DroneFramework.test.driversTests.GiroscopioDriverrTest import GiroscopioSensorTest
+from DroneFramework.test.driversTests.GiroscopioDriverTest import GiroscopioSensorTest
 from DroneFramework.test.driversTests.UltrasonidoDriverTest import UltrasonidoSensorTest
 
 def correrTestDeDrivers():

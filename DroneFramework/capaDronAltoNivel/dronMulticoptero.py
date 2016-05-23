@@ -1,5 +1,5 @@
-from capaDronAltoNivel.dronVolador import DronVolador
-from capaDronBajoNivel.controladorDronMulticoptero import ControladorDronMulticoptero
+from DroneFramework.capaDronAltoNivel.dronVolador import DronVolador
+from DroneFramework.capaDronBajoNivel.controladorDronMulticoptero import ControladorDronMulticoptero
 
 from scipy.spatial import distance
 
