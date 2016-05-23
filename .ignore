@@ -1,4 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
 .idea/*
-./**/_*
+.idea/*.*
+.idea/*.iml
+.idea/*.xml
+**/_*
 .vpprefdata/*
-./**/*.pyc
+**/*.pyc
