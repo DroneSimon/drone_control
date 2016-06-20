@@ -1,140 +1,125 @@
 #!/usr/bin/python
+_autor_ = "Jorge R. Encinas"
+import math
 
-import smbus
-
-import math, time, os
-
-# Power management registers
-power_mgmt_1 = 0x6b
-power_mgmt_2 = 0x6c
-
-bus = smbus.SMBus(1) # or bus = smbus.SMBus(1) for Revision 2 boards
-
-address = 0x68       # This is the address value read via the i2cdetect command
-
-
-def read_byte(adr):
-    return bus.read_byte_data(address, adr)
-
-def read_word(adr):
-    high = bus.read_byte_data(address, adr)
-    low = bus.read_byte_data(address, adr+1)
-    val = (high << 8) + low
-    return val
-
-def read_word_2c(adr):
-    val = read_word(adr)
-    if (val >= 0x8000):
-        return -((65535 - val) + 1)
-    else:
-        return val
-
-def dist(a,b):
-    return math.sqrt((a*a)+(b*b))
-
-def get_y_rotation(x,y,z):
-    radians = math.atan2(x, dist(y,z))
-    return -math.degrees(radians)
-
-def get_x_rotation(x,y,z):
-    radians = math.atan2(y, dist(x,z))
-    return math.degrees(radians)
-'''
-try:
-		while 1:
-
-				# Now wake the 6050 up as it starts in sleep mode
-				bus.write_byte_data(address, power_mgmt_1, 0)
-
-				print "gyro data"
-				print "---------"
-
-				gyro_xout = read_word_2c(0x43)
-				gyro_yout = read_word_2c(0x45)
-				gyro_zout = read_word_2c(0x47)
-
-				print "gyro_xout: ", gyro_xout, " scaled: ", (gyro_xout / 131)
-				print "gyro_yout: ", gyro_yout, " scaled: ", (gyro_yout / 131)
-				print "gyro_zout: ", gyro_zout, " scaled: ", (gyro_zout / 131)
-
-				print
-				print "accelerometer data"
-				print "------------------"
-
-				accel_xout = read_word_2c(0x3b)
-				accel_yout = read_word_2c(0x3d)
-				accel_zout = read_word_2c(0x3f)
-
-				accel_xout_scaled = accel_xout / 16384.0
-				accel_yout_scaled = accel_yout / 16384.0
-				accel_zout_scaled = accel_zout / 16384.0
-
-				print "accel_xout: ", accel_xout, " scaled: ", accel_xout_scaled
-				print "accel_yout: ", accel_yout, " scaled: ", accel_yout_scaled
-				print "accel_zout: ", accel_zout, " scaled: ", accel_zout_scaled
-
-				print "x rotation: " , get_x_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled)
-				print "y rotation: " , get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled)
-
-				gyro_xout = read_word_2c(0x43)
-				gyro_yout = read_word_2c(0x45)
-				gyro_zout = read_word_2c(0x47)
-
-				print "gyro_xout: ", gyro_xout, " scaled: ", (gyro_xout / 131)
-				print "gyro_yout: ", gyro_yout, " scaled: ", (gyro_yout / 131)
-				print "gyro_zout: ", gyro_zout, " scaled: ", (gyro_zout / 131)
-				time.sleep( .1 )
-				os.system( "clear" )
-except KeyboardInterrupt:
-	print "MPU  ->  finalizado"
-
-'''
-
-#mdodified by Diego Garcia
+from deviceMonitor import I2Cscanner
 from driver import Driver
-class DriverGiroscopio(Driver) :
 
-	def getData(self):
-		bus = smbus.SMBus(1) # or bus = smbus.SMBus(1) for Revision 2 boards
-		address = 0x68       # This is the address value read via the i2cdetect command
+NO_PRESENT = 0
+OK = 1
 
-		# Now wake the 6050 up as it starts in sleep mode
-		bus.write_byte_data(address, power_mgmt_1, 0)
 
-		gyro_xout = read_word_2c(0x43)
-		gyro_yout = read_word_2c(0x45)
-		gyro_zout = read_word_2c(0x47)
+class DriverGiroscipio(Driver):
+    def __init__(self):
+        self.status = NO_PRESENT
+        self.device = I2Cscanner().getDevices()['giroscopio']
+        # self.device = [self.device[0]]  # force only one device
+        if len(self.device) > 0:  # uno o mas sensores detectados del mismo tipo.
+            self.status = OK
+            self.scale_gyro = 131  # from datasheet
+            self.scale_accel = 16384.0  # from datasheet
+            self.power_mgmt_1 = 0x6b  # Power management registers
+            self.power_mgmt_2 = 0x6c  # Power management registers
+            self.wake = 0  # wake the 6050 up as it starts in sleep mode
+            self.setup()
+            self.data = None
 
-		accel_xout = read_word_2c(0x3b)
-		accel_yout = read_word_2c(0x3d)
-		accel_zout = read_word_2c(0x3f)
+    def setup(self):
+        for device in self.device:
+            bus = device[0]
+            address = device[1]
+            bus.write_byte_data(address, self.power_mgmt_1, self.wake)
 
-		accel_xout_scaled = accel_xout / 16384.0
-		accel_yout_scaled = accel_yout / 16384.0
-		accel_zout_scaled = accel_zout / 16384.0
+    def read_data_bus(self, bus, address, adr):
+        if self.status is OK:
+            high = bus.read_byte_data(address, adr)
+            low = bus.read_byte_data(address, adr + 1)
+            val = (high << 8) + low
+            if val >= 0x8000:
+                return -((65535 - val) + 1)
+            else:
+                return val
+        else:
+            return None
 
-		data = dict()
-		data['inclinacion_x'] = get_x_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled)
-		data['inclinacion_y'] = get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled)
+    def read_xyz(self):
+        data = dict()
+        for device in self.device:
+            bus = device[0]
+            address = device[1]
+            accel_xout, accel_yout, accel_zout, gyro_xout, gyro_yout, gyro_zout, temp_out = self.get_raw(address, bus)
+            giro_y, giro_x = self.interpretData(accel_xout, accel_yout, accel_zout, data, gyro_xout, gyro_yout,
+                                                gyro_zout, temp_out)
+            self.heading(data, giro_x, giro_y)
+        self.data = data
 
-		gyro_xout = read_word_2c(0x43)
-		gyro_yout = read_word_2c(0x45)
-		gyro_zout = read_word_2c(0x47)
+    def heading(self, data, giro_x, giro_y):
+        heading = math.atan2(giro_y, giro_x)
+        if heading < 0:
+            heading += 2 * math.pi
+        data.setdefault('radian', heading)
+        data.setdefault('angulo', math.degrees(heading))
 
-		data['x'] = (gyro_xout / 131) #scaled
-		data['y'] = (gyro_yout / 131) #scaled
-		data['z'] = (gyro_zout / 131) #scaled
+    def interpretData(self, accel_xout, accel_yout, accel_zout, data, gyro_xout, gyro_yout, gyro_zout, temp_out):
+        data.setdefault('raw_temp', []).append(temp_out)
+        data.setdefault('temp_mpu', []).append(temp_out / 340.00 + 36.53)
+        data.setdefault('raw_giro_x', []).append(gyro_xout)
+        gyro_x = gyro_xout / self.scale_gyro
+        data.setdefault('giro_x', []).append(gyro_x)
+        data.setdefault('raw_giro_y', []).append(gyro_yout)
+        gyro_y = gyro_yout / self.scale_gyro
+        data.setdefault('giro_y', []).append(gyro_y)
+        data.setdefault('raw_giro_z', []).append(gyro_zout)
+        data.setdefault('giro_z', []).append(gyro_zout / self.scale_gyro)
+        data.setdefault('raw_accel_x', []).append(accel_xout)
+        data.setdefault('accel_x', []).append(accel_xout / self.scale_accel)
+        data.setdefault('raw_accel_y', []).append(accel_yout)
+        data.setdefault('accel_y', []).append(accel_yout / self.scale_accel)
+        data.setdefault('raw_accel_z', []).append(accel_zout)
+        data.setdefault('accel_z', []).append(accel_zout / self.scale_accel)
+        return gyro_y, gyro_x
 
-		return data
+    def get_raw(self, address, bus):
+        temp_out = self.read_data_bus(bus, address, 0x41)
+        gyro_xout = self.read_data_bus(bus, address, 0x43)
+        gyro_yout = self.read_data_bus(bus, address, 0x45)
+        gyro_zout = self.read_data_bus(bus, address, 0x47)
+        accel_xout = self.read_data_bus(bus, address, 0x3b)
+        accel_yout = self.read_data_bus(bus, address, 0x3d)
+        accel_zout = self.read_data_bus(bus, address, 0x3f)
+        return accel_xout, accel_yout, accel_zout, gyro_xout, gyro_yout, gyro_zout, temp_out
 
-	def getStatus(self):
-		# tiene los datos del sensor
-        # ok, no_ok, excepcion,
-		raise NotImplementedError( "Should have implemented this" )
+    def getData(self):
+        if self.status is OK:
+            # return self.data
+            self.read_xyz()
+            data = dict()
+            data.setdefault('angulo_xy', []).append(self.data['giro_x'])
+            data.setdefault('angulo_xy', []).append(self.data['giro_y'])
+            return data
 
-	def forceRead(self):
-		return self.getData()
+    def getStatus(self):
+        return self.status
 
-	def reset(self):
-		# inicializa datos sensor
-		raise NotImplementedError( "Should have implemented this" )
+    def forceRead(self):
+        return {'angulo': math.degrees(self.data)}
+
+    def reset(self):
+        print 'verificando presencia del sensor'
+        # reconform sensor ['Giroscipio'] in bus is present or presents
+        # setup()
+
+
+def test():
+    from time import sleep
+    giroscopio = DriverGiroscipio()
+    for i in range(0, 100):
+        print giroscopio.getData()
+        sleep(.1)
+
+
+if __name__ == "__main__":
+    try:
+        test()
+    except KeyboardInterrupt:
+        pass

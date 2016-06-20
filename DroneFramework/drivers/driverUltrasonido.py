@@ -10,21 +10,21 @@ GPIO.setup(GPIO_ECHO,GPIO.IN)
 GPIO.output(GPIO_TRIGGER,False)
 '''
 try:
-    while True:    
-        GPIO.output(GPIO_TRIGGER,True)  
-        time.sleep(0.00001)             
-        GPIO.output(GPIO_TRIGGER,False) 
+    while True:
+        GPIO.output(GPIO_TRIGGER,True)
+        time.sleep(0.00001)
+        GPIO.output(GPIO_TRIGGER,False)
         start = time.time()
         while GPIO.input(GPIO_ECHO)==0:
-            start = time.time()         
-        while GPIO.input(GPIO_ECHO)==1: 
-            stop = time.time()          
-        elapsed = stop-start            
-        distance =round ((elapsed * 34300)/2,4)   
-        print distance                  
-        time.sleep(.3)    
-except KeyboardInterrupt:                
-    print "quit"                         
+            start = time.time()
+        while GPIO.input(GPIO_ECHO)==1:
+            stop = time.time()
+        elapsed = stop-start
+        distance =round ((elapsed * 34300)/2,4)
+        print distance
+        time.sleep(.3)
+except KeyboardInterrupt:
+    print "quit"
     GPIO.cleanup()
 
 '''
@@ -44,7 +44,7 @@ class DriverUltrasonido(Driver):
         while GPIO.input(GPIO_ECHO)==1:
             stop = time.time()
         elapsed = stop-start
-        distance =round ((elapsed * 34300)/2,4)
+        distance = round((elapsed * 34300)/2,4)
 
         return {'altura' : distance}
 
@@ -61,3 +61,18 @@ class DriverUltrasonido(Driver):
     def reset(self):
         # inicializa datos sensor
         raise NotImplementedError( "Should have implemented this" )
+
+
+def test():
+    from time import sleep
+    ultrasonico = DriverUltrasonido()
+    for i in range(0, 100):
+        print ultrasonico.getData()
+        sleep(.2)
+
+if __name__ == "__main__":
+    try:
+        test()
+    except KeyboardInterrupt:
+        GPIO.cleanup()
+        # pass
