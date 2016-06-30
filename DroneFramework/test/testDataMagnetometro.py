@@ -1,13 +1,11 @@
 import unittest
-from hal.sensorDataMagnetometro import SensorDataMagnetometro
+from DroneFramework.hal.sensorDataMagnetometro import SensorDataMagnetometro
 from datetime import *
-
-
-data = {'angulo': 90}
 
 class SensorDataMagnetometroTest(unittest.TestCase):
 
     def setUp(self):
+        self.data = {'angulo': 90}
 
         self.dataMagnometro = SensorDataMagnetometro(data, datetime.today())
 

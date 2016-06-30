@@ -1,5 +1,5 @@
 import unittest
-from hal.sensorDataUltrasonido import SensorDataUltrasonido
+from DroneFramework.hal.sensorDataUltrasonido import SensorDataUltrasonido
 from datetime import *
 
 

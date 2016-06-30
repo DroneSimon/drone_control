@@ -1,4 +1,8 @@
+# -*- coding: utf-8 -*-
 _autor_= "I.C.C."
+
+
+# ojo función de estado hay que implementar!!!!! def getStatus(self):
 
 import time
 from DroneFramework.hal.actuadorOpenPilot import ActuadorOpenPilot
@@ -26,11 +30,11 @@ else:
     from DroneFramework.drivers.virtual.driverGiroscopioVirtual import DriverGiroscopioVirtual as DriverGiroscopio
 # falta driver de nivel de bateria
 
-
 from controladorDronVolador import ControladorDronVolador
 
 class ControladorDronMulticoptero(ControladorDronVolador):
 
+    #inicializa drivers y valores para operar el Open pilot
     def __init__(self):
         self.actuadorOP= ActuadorOpenPilot()
 
@@ -68,7 +72,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
     def encender(self):
         self.actuadorOP.encender()
 
-    #pone la altidud actual del GPS
+    #lee la altidud actual del GPS y setea ese valor variable de clase
     def setAltitudSuelo(self):
         self.altitudSuelo=self.sensorGPS.getLastInfo().getData()['altitud']
 
@@ -79,6 +83,8 @@ class ControladorDronMulticoptero(ControladorDronVolador):
     # giro lateral de la cabeza desde la pocision donde esta
     # velocidad es un entero de 1 al 50, no puede ser 0
     # si grados es negativo ira a la izquierda, sino a la derecha
+    # para esta funcionalidad se asumió que si velocidad mayor a 50 va a la derecha
+    #                                       si velocidad menor a 50 va a la izquierda
     def yaw(self, grados, velocidad):
         anguloInicial=self.sensorMagnetometro.getAnguloCabezaDron()
         gradosAlcanzados=0
@@ -102,7 +108,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
     def yaw_derecha(self, grados, velocidad):
         self.yaw(abs(grados),velocidad)
 
-    # elevar el dron: distancia estara en centimetros y es la distancia que debe subir desde donde esta
+    # elevar el dron: distancia estará en centimetros y es la distancia que debe subir desde donde esta
     # velocidad para elevarse debe ser mayor a velocidadEstable y menor a velocidadMaxMotores
     # velocidad se sumara a la velocidad estable - hasta velocidadMaxMotores
     def up(self, distancia, velocidad):
@@ -149,6 +155,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
             distanciaSuelo=self.sensorGPS.getLastInfo()['altitud']*100-self.altitudSuelo
         return distanciaSuelo
 
+    # método de aterrizar velocidad 30-10-5
     def aterrizar1(self):
         self.nivelarDron()
         self.down(30,self.velocidadEstable/2)
@@ -156,6 +163,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
         self.down(5,self.velocidad5cm)
         self.apagar()
 
+    # metodo aterrizar bajando gradualmente la velocidad
     def aterrizar2(self):
         distanciaInicial=self.getDistanciaSuelo()
         distanciaAlcanzada=distanciaInicial
@@ -183,7 +191,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
         self.actuadorOP.setThrotle(self.velocidad5cm/2)
         self.apagar()
 
-    # cabeceo - elevacion de la cabeza la sube/baja a los "grados" indicados en "y" del giroscopio
+    # cabeceo - elevacion de la cabeza la sube a los "grados" indicados en "y" del giroscopio
     # a la velocidad(0-50) indicada
     def pitch_arriba(self, grados, velocidad):
         grados=-abs(grados) # porque el "angulo y" hacia arriba es negativo
@@ -233,6 +241,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
 
     # giro lateral de costado a la derecha: x giroscopio positivo
     # deja el dron en "grados" a la derecha a la "velocidad" indicada
+    # el giro no es relativo a su posición, grados es absoluto, es decir deja el dron en ese angulo
     def roll_derecha(self, grados, velocidad):
         grados=abs(grados) # porque el "angulo x" a la derecha es positivo
 
@@ -256,7 +265,8 @@ class ControladorDronMulticoptero(ControladorDronVolador):
         self.actuadorOP.setPitch(self.velocidadCeroGiroOP)
 
     # giro lateral de costado a la izquierda
-    # deja el dron en "grados" a la izquierda a la "velocidad" indicada
+    # deja el dron en "grados" a la izquierda a la "velocidad" indicada,
+    # el giro no es relativo a su posición, grados es absoluto, es decir deja el dron en ese angulo
     def roll_izquierda(self, grados, velocidad ):
         grados=-abs(grados) # porque el "angulo x" a la izquierda es negativo
 
@@ -291,7 +301,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
         z=self.getDistanciaSuelo()
         return {'x':x,'y':y,'z':z}
 
-    # avanza el dron en direccion a al acabeza
+    # avanza el dron en direccion a la acabeza
     def irAdelante(self, velocidad):
         velocidad=self.velocidadEstable+abs(velocidad)
         if (velocidad>self.velocidadMaxMotores):
@@ -336,10 +346,11 @@ class ControladorDronMulticoptero(ControladorDronVolador):
         self.pitch_abajo(0,5)
         self.roll_derecha(0,5)
 
-    # estabilizado - acrobatico y tiene 6 modos mas
+    # estabilizado - acrobatico y tiene 6 modos mas: modos diccionario:{'estabilizado', 'acrobatico'}
     def setModo(self,modo):
         self.actuadorOP.setModoVuelo(modo)
 
+    # mantiene el dron volando en un mismo sitio
     def mantenerCoordenadas(self):
         self.nivelarDron()
         self.actuadorOP.setThrotle(self.velocidadEstable)
@@ -348,6 +359,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
     def getModosDeOperacion(self):
         return self.modosDeOperacion
 
+    # ojo función de estado hay que implementar!!!!! def getStatus(self):
     def getStatus(self):
         return 'ok'
 

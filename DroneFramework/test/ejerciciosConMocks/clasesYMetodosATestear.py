@@ -9,9 +9,6 @@ def rm1(filename):
     i=Imprime()
     return (filename+' '+i.imprimir())
 
-
-
-
 def rm(filename):
 
     if os.path.isfile(filename):
@@ -34,3 +31,8 @@ class UploadService(object):
     def upload_complete(self, filename):
         print "ejecutanto del borrado con el upload del servicio completado"
         self.removal_serviceUS.rm(filename)
+
+class DummyClass:
+    def hello(self):
+        print("Hello world")
+        return "OK"

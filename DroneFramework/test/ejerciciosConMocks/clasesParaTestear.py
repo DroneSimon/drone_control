@@ -4,6 +4,17 @@
 import unittest
 import mock
 
+from DroneFramework.test.ejerciciosConMocks.clasesYMetodosATestear import DummyClass
+class DummyClassTest(unittest.TestCase):
+    print 'hola1'
+    m = mock.Mock()
+    print(m.hell())
+    print 'hola2'
+    dummy_object = DummyClass()
+    spy = mock.Mock(wraps=dummy_object)
+    print(spy.hello())
+    print 'hola3'
+
 # Esta clase testea la función 'rm' que necesita el modulo os (sistema operativo)
 # y además necesita el modulo path para ver si existe o no el archivo
 #Tanto el os y path con mockeados
@@ -51,7 +62,6 @@ class RemovalServiceTestCase(unittest.TestCase):
         
         referenceRmServicioClase.rm("any path")
         mock_os.remove.assert_called_with("any path")
-
 
 from DroneFramework.test.ejerciciosConMocks.clasesYMetodosATestear import UploadService
 
@@ -104,3 +114,7 @@ class UploadServiceTestCaseConInstanciaDelServicio(unittest.TestCase):
 
         # testea si el método rm es llamado cuando se ejecuto metodo upload_complete
         mock_removal_service.rm.assert_called_with("my uploaded file")
+
+
+
+
