@@ -60,7 +60,7 @@ class ActuadorOpenPilot:
 		self.roll = vel
 		self.writeSerial( 'r' + str(vel))
 
-	def setPith(self, vel):
+	def setPitch(self, vel):
 		self.pith = vel
 		self.writeSerial( 'p' + str(vel))
 

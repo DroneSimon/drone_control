@@ -5,7 +5,6 @@ os.path.join(os.getcwd(), 'DroneFramework', 'mocks')
 
 #import DroneFramework.drivers.driverGPS as GPS_driver
 
-
 import Reconocedor_Fuego_Humo as fire_detector
 from DroneFramework.capaDronBajoNivel.controladorDronMulticoptero import ControladorDronMulticoptero as drone
 
@@ -23,11 +22,17 @@ def anomalyDetectedOK():
 
 #from DroneFramework.test.ejerciciosConMocks.moduloDeLlamadaATests import correrEjerciciosDeTestConMocks
 from DroneFramework.test.driversTests.correrTestDeDrivers import correrTestDeDrivers
+from DroneFramework.test.capaDronBajoNivelTests.correrTestCtrlDronMulticoptero import CorrerTestCtrlDronMulticoptero
+
+
 from DroneFramework.capaDronBajoNivel.controladorDronMulticoptero import ControladorDronMulticoptero
+
 
 def main():
     #correrEjerciciosDeTestConMocks()
-    correrTestDeDrivers()
+    #correrTestDeDrivers()
+    correrTestCtrlMulticoptero= CorrerTestCtrlDronMulticoptero()
+    correrTestCtrlMulticoptero.correrTest()
     #dron= ControladorDronMulticoptero()
     #dron.encender()
 

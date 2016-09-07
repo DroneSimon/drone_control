@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 _autor_= "I.C.C."
 
 import time
@@ -183,8 +184,10 @@ class ControladorDronMulticoptero(ControladorDronVolador):
         self.actuadorOP.setThrotle(self.velocidad5cm/2)
         self.apagar()
 
-    # cabeceo - elevacion de la cabeza la sube/baja a los "grados" indicados en "y" del giroscopio
+    # cabeceo - elevacion de la cabeza la sube/baja a los "grados" indicados por ENCIMA del eje X
+    # Es decir hace que la cabeza del dron, en el giroscopio parámetro y este en "grados"
     # a la velocidad(0-50) indicada
+    # notar los "grados" leídos siempre estarán por encima de 0 grados, hacia arriba eje x
     def pitch_arriba(self, grados, velocidad):
         grados=-abs(grados) # porque el "angulo y" hacia arriba es negativo
         y= self.sensorGiroscopio.getLastInfo().getData()['y']
@@ -206,10 +209,13 @@ class ControladorDronMulticoptero(ControladorDronVolador):
 
         self.actuadorOP.setPitch(self.velocidadCeroGiroOP)
 
-    # cabeceo - bajar la cabeza, baja los "grados" en y de giroscopio a la velocidad (1-50) indicada
+    # cabeceo - la cabeza la sube/baja a los "grados" indicados por DEBAJO el eje x
+    # Es decir hace que la cabeza del dron, en el giroscopio parámetro y este en "grados"
+    # a la velocidad(0-50) indicada
+    # notar los "grados" leídos siempre estarán por DEBAJO  de 0 grados, hacia ABAJO eje x
     def pitch_abajo(self, grados, velocidad):
 
-        grados=abs(grados) # porque el "angulo y" hacia abajo es positivo
+        grados=abs(grados) # porque el "angulo y" hacia abajo eje x es positivo
 
         y= self.sensorGiroscopio.getLastInfo().getData()['y']
         if (velocidad>50):
