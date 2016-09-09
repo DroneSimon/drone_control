@@ -22,13 +22,13 @@ class DriverGiroscopioVirtual(Driver):
     def getData(self):
         giroscopio = self.SensorVirtual.getData()
         data = dict()
-        data['inclinacion_x'] = giroscopio[12]
-        data['inclinacion_y'] = giroscopio[13]
+        data['inclinacion_x'] = float(giroscopio[12])
+        data['inclinacion_y'] = float(giroscopio[13])
 
         #ojo jorge implementar esto para que corra prueba de pitch
-        data['x'] = giroscopio[0] #(gyro_xout / 131) #scaled
-        data['y'] = giroscopio[1] #(gyro_yout / 131) #scaled
-        data['z'] = giroscopio[2] #(gyro_zout / 131) #scaled
+        data['x'] = float(giroscopio[0]) #(gyro_xout / 131) #scaled
+        data['y'] = float(giroscopio[1]) #(gyro_yout / 131) #scaled
+        data['z'] = float(giroscopio[2]) #(gyro_zout / 131) #scaled
 
 
         return data

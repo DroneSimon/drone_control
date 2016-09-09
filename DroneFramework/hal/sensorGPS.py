@@ -33,4 +33,4 @@ class SensorGPS(Sensor):
         self.sensorData.setData(self.driver.getData())
         self.sensorData.setAge(datetime.today())
         data = self.sensorData.getData()
-        return (data['latitud'], data['longitud'], data['altitud'])
+        return (data)
