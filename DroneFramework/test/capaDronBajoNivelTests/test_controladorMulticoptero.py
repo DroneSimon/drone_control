@@ -275,7 +275,6 @@ class ControladorMulticopetroTest(unittest.TestCase):
         self.assertAlmostEquals(xyz['x'],0,1) # uno es el error esperado en este caso desde el 1er decimal
         self.assertAlmostEquals(xyz['y'],0,1)
 
-
     # estabilizado - acrobatico y tiene 6 modos mas
     def test_setModo_getModo(self):
         self.controladorDronATestear.setModo(0)
