@@ -220,7 +220,8 @@ class ControladorMulticopetroTest(unittest.TestCase):
         self.assertAlmostEqual(xyz1, xyz2 ,1) # el 1 indica que puede variar desde el primer decimal
 
     # avanza el dron en direccion a al acabeza
-    def test_irAdelante(self, velocidad):
+    # se asumió para la prueba que  se mueve en el eje x
+    def test_irAdelante(self):
         xyz1=self.controladorDronATestear.getCoordenadas()
         self.controladorDronATestear.irAtras(30)
         time.sleep(.900)
@@ -228,10 +229,11 @@ class ControladorMulticopetroTest(unittest.TestCase):
         if (xyz1['x']>0):
             self.assertTrue(xyz2['x']>xyz1['x'])
         else:
-             self.assertFalse(xyz2['x']<xyz1['x'])
+             self.assertTrue(xyz2['x']<xyz1['x'])
 
     # avanza el dron en direccion contraria a la cabeza
-    def test_irAtras(self, velocidad):
+    # se asumió para la prueba que  se mueve en el eje x
+    def test_irAtras(self):
         xyz1=self.controladorDronATestear.getCoordenadas()
         self.controladorDronATestear.irAtras(30)
         time.sleep(.900)
@@ -239,18 +241,60 @@ class ControladorMulticopetroTest(unittest.TestCase):
         if (xyz1['x']>0):
             self.assertTrue(xyz2['x']<xyz1['x'])
         else:
-             self.assertFalse(xyz2['x']>xyz1['x'])
+             self.assertTrue(xyz2['x']>xyz1['x'])
 
 
     # avanza el dron hacia la derecha de su cabeza
-    def test_irDerecha(self,velocidad):
+    # se asumió para la prueba que  se mueve en el eje y
+    def test_irDerecha(self):
         xyz1=self.controladorDronATestear.getCoordenadas()
         self.controladorDronATestear.irAtras(30)
         time.sleep(.900)
         xyz2=self.controladorDronATestear.getCoordenadas()
         if (xyz1['y']>0):
-            self.assertTrue(xyz2['x']>xyz1['x'])
+            self.assertTrue(xyz2['y']>xyz1['y'])
         else:
-             self.assertFalse(xyz2['x']<xyz1['x'])
+             self.assertTrue(xyz2['y']<xyz1['y'])
 
     # avanza el dron hacia la izquierda de su cabeza
+    # se asumió para la prueba que  se mueve en el eje y
+    def test_irIzquierdad(self):
+        xyz1=self.controladorDronATestear.getCoordenadas()
+        self.controladorDronATestear.irAtras(30)
+        time.sleep(.900)
+        xyz2=self.controladorDronATestear.getCoordenadas()
+        if (xyz1['y']<0):
+            self.assertTrue(xyz2['y']<xyz1['y'])
+        else:
+             self.assertTrue(xyz2['y']>xyz1['y'])
+
+    #Nivela dron se asume que queda nivelado si "x" y "y"  están muuy cerca de cero
+    def test_nivelarDron(self):
+        self.controladorDronATestear.nivelarDron()
+        xyz=self.controladorDronATestear.getCoordenadas()
+        self.assertAlmostEquals(xyz['x'],0,1) # uno es el error esperado en este caso desde el 1er decimal
+        self.assertAlmostEquals(xyz['y'],0,1)
+
+
+    # estabilizado - acrobatico y tiene 6 modos mas
+    def test_setModo_getModo(self):
+        self.controladorDronATestear.setModo(0)
+        self.assertEquals(self.controladorDronATestear.getModo(),0,1) # uno es el error esperado en este caso desde el 1er decimal
+
+        self.controladorDronATestear.setModo(1)
+        self.assertEquals(self.controladorDronATestear.getModo(),1,1) # uno es el error esperado en este caso desde el 1er decimal
+
+    #nivela dron para quedarse en el mismo lugar
+    def test_mantenerCoordenadas(self):
+        self.controladorDronATestear.mantenerCoordenadas()
+        xyz1=self.controladorDronATestear.getCoordenadas()
+        time.sleep(.900)
+        xyz2=self.controladorDronATestear.getCoordenadas()
+        self.assertAlmostEquals(xyz1['x'],xyz2['x'],1) # uno es el error esperado en este caso desde el 1er decimal
+        self.assertAlmostEquals(xyz1['y'],xyz2['y'],1)
+        self.assertAlmostEquals(xyz1['z'],xyz2['z'],1)
+
+    # devuelve los valores de modos de vuelo en un diccionario:{'estabilizado', 'acrobatico'}
+    def test_getModosDeOperacion(self):
+        diccionario=self.controladorDronATestear.getModosDeOperacion()
+        self.assertTrue(isinstance(diccionario,dict))

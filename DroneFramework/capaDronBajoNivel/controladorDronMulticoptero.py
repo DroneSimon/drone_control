@@ -305,7 +305,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
 
         self.nivelarDron()
         self.pitch_abajo(self.anguloAvance,5)
-        self.actuadorOP.setThrotle(velocidad)
+        self.actuadorOP.setThrottle(velocidad)
 
     # avanza el dron en direccion contraria a la cabeza
     def irAtras(self, velocidad):
@@ -315,7 +315,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
 
         self.nivelarDron()
         self.pitch_arriba(self.anguloAvance,5)
-        self.actuadorOP.setThrotle(velocidad)
+        self.actuadorOP.setThrottle(velocidad)
 
     # avanza el dron hacia la derecha de su cabeza
     def irDerecha(self,velocidad):
@@ -325,7 +325,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
 
         self.nivelarDron()
         self.roll_derecha(self.anguloAvance,5)
-        self.actuadorOP.setThrotle(velocidad)
+        self.actuadorOP.setThrottle(velocidad)
 
     # avanza el dron hacia la izquierda de su cabeza
     def irIzquierdad(self,velocidad):
@@ -335,7 +335,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
 
         self.nivelarDron()
         self.roll_izquierda(self.anguloAvance,5)
-        self.actuadorOP.setThrotle(velocidad)
+        self.actuadorOP.setThrottle(velocidad)
 
     # pone el "x"  e "y" del giroscopio en 0
     def nivelarDron(self):
@@ -346,9 +346,14 @@ class ControladorDronMulticoptero(ControladorDronVolador):
     def setModo(self,modo):
         self.actuadorOP.setModoVuelo(modo)
 
+    # estabilizado - acrobatico y tiene 6 modos mas
+    def getModo(self):
+        return self.actuadorOP.getModoVuelo()
+
+    #nivela dron para quedarse en el mismo lugar
     def mantenerCoordenadas(self):
         self.nivelarDron()
-        self.actuadorOP.setThrotle(self.velocidadEstable)
+        self.actuadorOP.setThrottle(self.velocidadEstable)
 
     # devuelve los valores de modos de vuelo en un diccionario:{'estabilizado', 'acrobatico'}
     def getModosDeOperacion(self):
