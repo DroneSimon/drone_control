@@ -61,7 +61,7 @@ class ActuadorOpenPilot:
 		self.writeSerial( 'r' + str(vel))
 
 	def setPitch(self, vel):
-		self.pith = vel
+		self.pitch = vel
 		self.writeSerial( 'p' + str(vel))
 
 	def setThrottle(self, vel):

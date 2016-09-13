@@ -181,7 +181,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
 
         self.actuadorOP.setThrotle(self.velocidad5cm)
         time.sleep(.300)
-        self.actuadorOP.setThrotle(self.velocidad5cm/2)
+        self.actuadorOP.setThrotle(self.velcidad5cm/2)
         self.apagar()
 
     # cabeceo - elevacion de la cabeza la sube/baja a los "grados" indicados por ENCIMA del eje X
