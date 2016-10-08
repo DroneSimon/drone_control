@@ -22,19 +22,23 @@ def anomalyDetectedOK():
 
 #from DroneFramework.test.ejerciciosConMocks.moduloDeLlamadaATests import correrEjerciciosDeTestConMocks
 from DroneFramework.test.driversTests.correrTestDeDrivers import correrTestDeDrivers
-from DroneFramework.test.capaDronBajoNivelTests.correrTestCtrlDronMulticoptero import CorrerTestCtrlDronMulticoptero
+#3.from DroneFramework.test.capaDronBajoNivelTests.correrTestCtrlDronMulticoptero import CorrerTestCtrlDronMulticoptero
 
 
 from DroneFramework.capaDronBajoNivel.controladorDronMulticoptero import ControladorDronMulticoptero
+
+from DroneFramework.capaDronAltoNivel.dronMulticoptero import DronMulticoptero
 
 
 def main():
     #correrEjerciciosDeTestConMocks()
     #correrTestDeDrivers()
-    correrTestCtrlMulticoptero= CorrerTestCtrlDronMulticoptero()
-    correrTestCtrlMulticoptero.correrTest()
-    #dron= ControladorDronMulticoptero()
-    #dron.encender()
+    #3.correrTestCtrlMulticoptero= CorrerTestCtrlDronMulticoptero()
+    #3.correrTestCtrlMulticoptero.correrTest()
+    controladorMulticoptero=ControladorDronMulticoptero()
+    dron= DronMulticoptero(controladorMulticoptero)
+    dron.encender()
+
 
 if __name__ == '__main__':
 	main()

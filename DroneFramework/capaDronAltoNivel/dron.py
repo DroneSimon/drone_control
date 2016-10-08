@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
+
 import abc
 # Abstract Base Class todo son objetos en python y derivan de abc
 
 from abc import ABCMeta
-from capaDronBajoNivel.controladorDron import ControladorDron
+from DroneFramework.capaDronBajoNivel.controladorDron import ControladorDron
 from scipy.spatial import distance
 
 
@@ -14,11 +16,10 @@ class Dron (object):
         :type controladorDron: ControladorDron
         """
         # Este es un controlador con funciones de nivel intermedio en la comunicación del dron
-        self.controladorDron = ControladorDron()
         self.encendido=False
         self.modo=None
-        self.puntoPartida=self.controladorDron.getCoordenadas()
-        self.posicionActual=self.controladorDron.getCoordenadas()
+        self.puntoPartida=controladorDron.getCoordenadas()
+        self.posicionActual=controladorDron.getCoordenadas()
 
     def volver(self,velocidad):
         self.irA(self.puntoPartida,velocidad)

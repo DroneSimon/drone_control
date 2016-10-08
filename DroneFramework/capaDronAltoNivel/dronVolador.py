@@ -2,8 +2,12 @@ import abc
 #Abstract Base Class todo son objetos en python y derivan de abc
 
 from abc import ABCMeta
-from capaDronBajoNivel.controladorDron import ControladorDron
-from capaDronBajoNivel.controladorDronVolador import ControladorDronVolador
+#from capaDronBajoNivel.controladorDron import ControladorDron
+#from capaDronBajoNivel.controladorDronVolador import ControladorDronVolador
+
+#from DroneFramework.capaDronBajoNivel.controladorDronMulticoptero import ControladorDron
+from DroneFramework.capaDronBajoNivel.controladorDronVolador import ControladorDronVolador
+#from DroneFramework.capaDronAltoNivel.dronMulticoptero import DronMulticoptero
 
 
 from dron import Dron
@@ -15,10 +19,10 @@ class DronVolador (Dron):
 
     def __init__(self,controladorDronVolador):
         """
-        :type controladorDronVolador: ControladorDronVolador
+         :type controladorDronVolador: ControladorDronVolador
         """
         # inicializa
-        Dron.__init__(controladorDronVolador)
+        Dron.__init__(self, controladorDronVolador)
 
 
     def aterrizar(self):

@@ -34,7 +34,7 @@ class ActuadorOpenPilot:
 
 	def encender(self):
 			self.setRoll(50)
-			self.setPith(50)
+			self.setPitch(50)
 			self.setThrottle(0)
 			self.setYaw(100) # configurado en openpilot
 			sleep(2)
@@ -43,7 +43,7 @@ class ActuadorOpenPilot:
 	def setOnOf(self, valor):
 		if(valor == 1):
 			self.setRoll(50)
-			self.setPith(50)
+			self.setPitch(50)
 			self.setThrottle(0)
 			self.setYaw(100) # configurado en openpilot
 			sleep(2)

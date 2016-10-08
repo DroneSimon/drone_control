@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from DroneFramework.capaDronAltoNivel.dronVolador import DronVolador
 from DroneFramework.capaDronBajoNivel.controladorDronMulticoptero import ControladorDronMulticoptero
 
@@ -7,16 +8,20 @@ class DronMulticoptero (DronVolador):
 
     def __init__(self,controladorMulticoptero):
         """
-        :type controladorMulticoptero: ControladorDronMulticoptero
+         :type controladorMulticoptero: ControladorDronMulticoptero
         """
         # inicializa controladorDron, puntoPartida, posicionActual, modo, encendido
-        DronVolador.__init__(controladorMulticoptero)
+        DronVolador.__init__(self,controladorMulticoptero)
+        self.controladorMulticoptero=controladorMulticoptero
 #Sábado 8 oct.
  #indira
     # Aterriza donde está
     def aterrizar(self):
-        alturaSuelo=self.controladorDron.getDistanciaSuelo()
-        self.controladorDron.down(alturaSuelo-10)
+        self.controladorMulticoptero.aterrizar()
+
+    def aterrizar2(self):
+        self.controladorMulticoptero.aterrizar2()
+
     def bajar(self, distancia, velocidad):
         raise NotImplementedError( "Should have implemented this" )
 
@@ -30,7 +35,7 @@ class DronMulticoptero (DronVolador):
 
  #jorge
     def encender(self):
-        raise NotImplementedError( "Should have implemented this" )
+       self.controladorMulticoptero.encender()
 
     def subir(self, distancia, velocidad):
         raise NotImplementedError( "Should have implemented this" )
@@ -67,20 +72,18 @@ class DronMulticoptero (DronVolador):
         raise NotImplementedError( "Should have implemented this" )
 
     # dirige la cabeza al punto XYZ
-    def mirarA(self,punto3D velocidad ):
+    def mirarA(self,punto3D, velocidad ):
         raise NotImplementedError( "Should have implemented this" )
 
 
 # sábado 22 oct
 
 # sábado 29 oct
-    def sobreVolar(self, listaPuntos3D):
-        raise NotImplementedError( "Should have implemented this" )
+    def sobrevolar(self, listaPuntos3D):
+        print("hi")
     
 
 # sábado 5 nov
-
-
 
 
 
