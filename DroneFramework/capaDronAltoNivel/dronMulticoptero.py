@@ -23,14 +23,15 @@ class DronMulticoptero (DronVolador):
         self.controladorMulticoptero.aterrizar2()
 
     def bajar(self, distancia, velocidad):
-        raise NotImplementedError( "Should have implemented this" )
+        self.controladorMulticoptero.down(distancia,velocidad)
 
     def irIzquierda(self, velocidad):
-        raise NotImplementedError( "Should have implemented this" )
+        self.controladorMulticoptero.irIzquierdad(velocidad)
 
     def irDerecha(self, velocidad):
-        raise NotImplementedError( "Should have implemented this" )
-  #hacer función extra para probar funciones
+         self.controladorMulticoptero.irDerecha((velocidad))
+
+#hacer función extra para probar funciones
 
 
  #jorge
