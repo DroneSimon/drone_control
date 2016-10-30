@@ -28,6 +28,7 @@ class SensorGPS(Sensor):
 
     def forceRead(self):
         self.driver.forceRead()
+        self.getCoordenadas()
 
     def getCoordenadas(self):
         self.sensorData.setData(self.driver.getData())

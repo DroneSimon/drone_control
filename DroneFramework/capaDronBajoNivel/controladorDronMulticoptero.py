@@ -184,12 +184,23 @@ class ControladorDronMulticoptero(ControladorDronVolador):
         self.actuadorOP.setThrotle(self.velcidad5cm/2)
         self.apagar()
 
+    #función auxiliar privada que permite controlar los grados de elevación,
+    # o rotacion que con la raspeberry u open pilot solo es 45 grados
+    def gradosDeMovilidad(self, gradosRecibidos):
+        if (abs(gradosRecibidos)>45):
+            gradosRecibidos=45
+
+        return gradosRecibidos
+
     # cabeceo - elevacion de la cabeza la sube/baja a los "grados" indicados por ENCIMA del eje X
     # Es decir hace que la cabeza del dron, en el giroscopio parámetro y este en "grados"
     # a la velocidad(0-50) indicada
     # notar los "grados" leídos siempre estarán por encima de 0 grados, hacia arriba eje x
+
+
     def pitch_arriba(self, grados, velocidad):
         grados=-abs(grados) # porque el "angulo y" hacia arriba es negativo
+        grados=self.gradosDeMovilidad(grados) # controla que no pase de 45 o sea mayor que cero, que es el máximo de giro o elevación que tiene
         y= self.sensorGiroscopio.getLastInfo().getData()['y']
         if (velocidad>50):
             velocidad=50
@@ -216,6 +227,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
     def pitch_abajo(self, grados, velocidad):
 
         grados=abs(grados) # porque el "angulo y" hacia abajo eje x es positivo
+        grados=self.gradosDeMovilidad(grados) # controla que no pase de 45 o sea mayor que cero, que es el máximo de giro o elevación que tiene
 
         y= self.sensorGiroscopio.getLastInfo().getData()['y']
         if (velocidad>50):
@@ -241,6 +253,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
     # deja el dron en "grados" a la DERECHA DE EJE X a la "velocidad" indicada
     def roll_derecha(self, grados, velocidad):
         grados=abs(grados) # porque el "angulo x" a la derecha es positivo
+        grados=self.gradosDeMovilidad(grados) # controla que no pase de 45 o sea mayor que cero, que es el máximo de giro o elevación que tiene
 
         x= self.sensorGiroscopio.getLastInfo().getData()['x']
         if (velocidad>50):
@@ -265,6 +278,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
     # deja el dron en "grados" a la IZQUIERDA EJE X a la "velocidad" indicada
     def roll_izquierda(self, grados, velocidad ):
         grados=-abs(grados) # porque el "angulo x" a la izquierda es negativo
+        grados=self.gradosDeMovilidad(grados) # controla que no pase de 45 o sea mayor que cero, que es el máximo de giro o elevación que tiene
 
         x= self.sensorGiroscopio.getLastInfo().getData()['x']
         if (velocidad>50):

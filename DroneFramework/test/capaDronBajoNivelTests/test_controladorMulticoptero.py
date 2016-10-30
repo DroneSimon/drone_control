@@ -48,8 +48,6 @@ class ControladorMulticopetroTest(unittest.TestCase):
         # el 1 de abajo indica que puede variar desde el primer decimal
         self.assertAlmostEqual(grados, yFinal,1)
 
-
-
     # No debería moverse
     def test_pitch_arriba_conVelocidadCero(self):
         grados= random.randrange(0, 360, 1) # de angulo 0-360 de 1 en 1
