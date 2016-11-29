@@ -19,26 +19,31 @@ def anomalyDetectedOK():
     the_drone.yaw(360, 10)
     the_drone.down(10,1)
     the_drone.apagar()
-
+#1.
 #from DroneFramework.test.ejerciciosConMocks.moduloDeLlamadaATests import correrEjerciciosDeTestConMocks
-from DroneFramework.test.driversTests.correrTestDeDrivers import correrTestDeDrivers
+#2.
+#from DroneFramework.test.driversTests.correrTestDeDrivers import correrTestDeDrivers
+#3.
 from DroneFramework.test.capaDronBajoNivelTests.correrTestCtrlDronMulticoptero import CorrerTestCtrlDronMulticoptero
-from DroneFramework.test.capaDronAltoNivelTests.correrTestDronMulticoptero import CorrerTestDronMulticoptero
+#4.
+#from DroneFramework.test.capaDronAltoNivelTests.correrTestDronMulticoptero import CorrerTestDronMulticoptero
 
 
-from DroneFramework.capaDronBajoNivel.controladorDronMulticoptero import ControladorDronMulticoptero
+#from DroneFramework.capaDronBajoNivel.controladorDronMulticoptero import ControladorDronMulticoptero
 
-from DroneFramework.capaDronAltoNivel.dronMulticoptero import DronMulticoptero
+#from DroneFramework.capaDronAltoNivel.dronMulticoptero import DronMulticoptero
 
 
 def main():
+    #1.
     #correrEjerciciosDeTestConMocks()
+    #2.
     #correrTestDeDrivers()
-
+    #3.
     correrTestCtrlMulticoptero= CorrerTestCtrlDronMulticoptero()
     correrTestCtrlMulticoptero.correrTest()
 
-
+    #4.
     #correrTestMulticoptero= CorrerTestDronMulticoptero()
     #correrTestMulticoptero.correrTest()
 

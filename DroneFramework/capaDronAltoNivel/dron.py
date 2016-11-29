@@ -20,6 +20,7 @@ class Dron (object):
         self.modo=None
         self.puntoPartida=controladorDron.getCoordenadas()
         self.posicionActual=controladorDron.getCoordenadas()
+        self.controladorDron=controladorDron
 
     def volver(self,velocidad):
         self.irA(self.puntoPartida,velocidad)
@@ -97,6 +98,15 @@ class Dron (object):
     def irAdelante(self,velocidad):
         self.controladorDron.irAdelante(velocidad)
 
+    # obtiene un diccionario con los modos de operacion que maneja el driver
+    # para dron open pilot: estabilizado, acrobático, etc
+    def getModosDeOperacion(self):
+        self.controladorDron.getModosDeOperacion()
 
+    def setModo(self, modo):
+        self.controladorDron.setModo(modo)
+
+    def getModo(self):
+        return self.controladorDron.getModo()
 
 

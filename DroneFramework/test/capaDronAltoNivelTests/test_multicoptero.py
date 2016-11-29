@@ -12,8 +12,6 @@ import time
 class MulticopetroTest(unittest.TestCase):
 
 
-
-
     def setUp(self):
 
         self.controladorMulticoptero = controladorMulticoptero.ControladorDronMulticoptero()
@@ -22,6 +20,7 @@ class MulticopetroTest(unittest.TestCase):
 
     def tearDown(self):
         print "Finalizando pruebas de ControladorDronMulticoptero"
+        del self.controladorMulticoptero
         del self.dronATestear
 
     def ponerDronPosicionPruebas(self, altura=10):

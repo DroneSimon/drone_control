@@ -1,6 +1,6 @@
 import unittest
 
-import DroneFramework.test.capaDronBajoNivelTests.test_controladorMulticoptero as testCtrlMulticoptero
+import DroneFramework.test.capaDronBajoNivelTests.ControladorMulticopteroTest as testCtrlMulticoptero
 
 
 class CorrerTestCtrlDronMulticoptero ():

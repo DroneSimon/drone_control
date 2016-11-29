@@ -63,6 +63,8 @@ class ControladorDronMulticoptero(ControladorDronVolador):
 
         # definicion de modos de vuelo
         self.modosDeOperacion={'estabilizado':0, 'acrobatico':1}    # esto hay que verificar
+        self.actuadorOP.setModoVuelo('estabilizado')
+
 
 
     # encender equivale a decir armar motores en OP
@@ -357,6 +359,7 @@ class ControladorDronMulticoptero(ControladorDronVolador):
         self.roll_derecha(0,5)
 
     # estabilizado - acrobatico y tiene 6 modos mas
+    # self.modosDeOperacion={'estabilizado':0, 'acrobatico':1}
     def setModo(self,modo):
         self.actuadorOP.setModoVuelo(modo)
 
@@ -364,14 +367,15 @@ class ControladorDronMulticoptero(ControladorDronVolador):
     def getModo(self):
         return self.actuadorOP.getModoVuelo()
 
+    # devuelve los valores de modos de vuelo en un diccionario:{'estabilizado', 'acrobatico'}
+    # self.modosDeOperacion={'estabilizado':0, 'acrobatico':1}    # esto hay que verificar
+    def getModosDeOperacion(self):
+        return self.modosDeOperacion
+
     #nivela dron para quedarse en el mismo lugar
     def mantenerCoordenadas(self):
         self.nivelarDron()
         self.actuadorOP.setThrottle(self.velocidadEstable)
-
-    # devuelve los valores de modos de vuelo en un diccionario:{'estabilizado', 'acrobatico'}
-    def getModosDeOperacion(self):
-        return self.modosDeOperacion
 
     def getStatus(self):
         return 'ok'

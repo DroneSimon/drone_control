@@ -35,10 +35,6 @@ class ControladorDron(object):
         raise NotImplementedError( "Should have implemented this" )
 
     @abc.abstractmethod
-    def setModo(self):
-        raise NotImplementedError( "Should have implemented this" )
-
-    @abc.abstractmethod
     def mantenerCoordenadas(self):
         raise NotImplementedError( "Should have implemented this" )
 
@@ -46,4 +42,12 @@ class ControladorDron(object):
     # para dron open pilot: estabilizado, acrobático, etc
     @abc.abstractmethod
     def getModosDeOperacion(self):
+        raise NotImplementedError( "Should have implemented this" )
+
+    @abc.abstractmethod
+    def setModo(self, modo):
+        raise NotImplementedError( "Should have implemented this" )
+
+    @abc.abstractmethod
+    def getModo(self):
         raise NotImplementedError( "Should have implemented this" )

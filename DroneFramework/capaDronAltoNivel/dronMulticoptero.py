@@ -31,53 +31,32 @@ class DronMulticoptero (DronVolador):
     def irDerecha(self, velocidad):
          self.controladorMulticoptero.irDerecha((velocidad))
 
-#hacer función extra para probar funciones
-
-
  #jorge
     def encender(self):
        self.controladorMulticoptero.encender()
 
     def subir(self, distancia, velocidad):
-        raise NotImplementedError( "Should have implemented this" )
+        self.controladorMulticoptero.up( distancia,velocidad )
+
     def irAdelante(self, velocidad):
-        raise NotImplementedError( "Should have implemented this" )
+        self.controladorMulticoptero.irAdelante( velocidad )
 
     def irAtras(self, velocidad ):
-        raise NotImplementedError( "Should have implemented this" )
+        self.controladorMulticoptero.irAdelante( velocidad )
 
     def mantener_posicion(self):
-        raise NotImplementedError( "Should have implemented this" )
+        self.controladorMulticoptero.mantenerCoordenadas()
 
-# sábado 15 oct
-#jorge
-
-    def irIzquierda(self, distancia, velocidad):
-        raise NotImplementedError( "Should have implemented this" )
-
-    def irDerecha(self, distancia, velocidad):
+# sábado 22 oct
+    def irA(self,x,y,z, velocidad ):
         raise NotImplementedError( "Should have implemented this" )
 
     def orbitar(self, centro, radio):
         raise NotImplementedError( "Should have implemented this" )
 
-
-#Indira
-    def irAdelante(self, distancia, velocidad):
-        raise NotImplementedError( "Should have implemented this" )
-
-    def irAtras(self,distancia, velocidad ):
-        raise NotImplementedError( "Should have implemented this" )
-
-    def irA(self,x,y,z, velocidad ):
-        raise NotImplementedError( "Should have implemented this" )
-
     # dirige la cabeza al punto XYZ
     def mirarA(self,punto3D, velocidad ):
         raise NotImplementedError( "Should have implemented this" )
-
-
-# sábado 22 oct
 
 # sábado 29 oct
     def sobrevolar(self, listaPuntos3D):

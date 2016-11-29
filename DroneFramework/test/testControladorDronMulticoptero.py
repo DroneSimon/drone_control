@@ -17,7 +17,6 @@ class testEnceder(TestControladorDronMulticoptero):
         self.controlador.actuadorOP.writeSerial('STATE')
         self.assertEquals(self.controlador.actuadorOP.status, 'OK')
 
-
 # lee la altidud actual del GPS y setea ese valor variable de clase
 class testSetAltitudSuelo(TestControladorDronMulticoptero)
     def runTest(self):

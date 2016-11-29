@@ -24,10 +24,8 @@ class DronVolador (Dron):
         # inicializa
         Dron.__init__(self, controladorDronVolador)
 
-
     def aterrizar(self):
         self.controladorDron.aterrizar()
-
 
     @abc.abstractmethod
     def orbitar(self,centro, radio):
